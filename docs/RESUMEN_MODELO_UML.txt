@@ -1,0 +1,266 @@
+================================================================================
+                    RESUMEN EJECUTIVO - MODELO UML
+                  Juego de Exploración por Habitaciones
+================================================================================
+
+FECHA: 2026-05-07
+ESTADO: ✅ DIAGRAMA UML COMPLETADO
+
+================================================================================
+ARCHIVOS GENERADOS
+================================================================================
+
+📊 DIAGRAMAS:
+  ✅ docs/uml/modelo_juego.png       (285 KB) - Diagrama en PNG
+  ✅ docs/uml/modelo_juego.svg       (28 KB)  - Diagrama en SVG (recomendado)
+  ✅ docs/uml/modelo_juego.dot       (4.8 KB) - Fuente Graphviz
+  ✅ docs/uml/modelo_juego.puml      (4.2 KB) - Fuente PlantUML
+
+📄 DOCUMENTACIÓN:
+  ✅ docs/uml/README_MODELO_UML.md                (7.7 KB)
+  ✅ docs/ESPECIFICACIONES_TECNICAS.md            (15+ KB)
+  ✅ docs/EJEMPLOS_Y_TESTS.md                     (20+ KB)
+  ✅ docs/RESUMEN_MODELO_UML.txt                  (este archivo)
+
+================================================================================
+NUEVAS CLASES A IMPLEMENTAR (6)
+================================================================================
+
+1️⃣  TipoCelda (Enum)
+    ├─ Valores: VACIA, PUERTA, TRAMPA, PARED
+    ├─ Métodos: 0 (enum simple)
+    └─ Complejidad: N/A
+
+2️⃣  Celda
+    ├─ Atributos: fila, columna, entidad, objeto, tipo
+    ├─ Métodos: 14 (constructores, getters, setters, booleanos, limpiar)
+    ├─ Complejidad: O(1) todas las operaciones
+    └─ Dependencias: TipoCelda, Entidad, Objeto
+
+3️⃣  MatrizHabitacion
+    ├─ Atributos: filas (LSE<LSE<Celda>>), numFilas, numColumnas
+    ├─ Métodos: 11 (acceso, filtrado, BFS, iteración)
+    ├─ Complejidad: O(n+m) acceso, O(n*m) filtrado/BFS
+    └─ Dependencias: Celda, LSE
+
+4️⃣  Puerta
+    ├─ Atributos: habitacionDestino, etiqueta, abierta
+    ├─ Métodos: 5 (getters, abrir, cerrar)
+    ├─ Complejidad: O(1) todas las operaciones
+    └─ Dependencias: ninguna
+
+5️⃣  Habitacion
+    ├─ Atributos: id, nombre, matriz, puertas, turnsLimit, esExterior, visitada
+    ├─ Métodos: 18 (acceso, gestión puertas, filtrado, limpieza)
+    ├─ Complejidad: O(1) acceso, O(k) búsqueda puerta, O(n*m) filtrado
+    └─ Dependencias: MatrizHabitacion, Puerta, LSE, Entidad, Objeto
+
+6️⃣  GrafoHabitaciones
+    ├─ Atributos: grafo, habitaciones (LSE), habitacionActual
+    ├─ Métodos: 12 (gestión, navegación, persistencia)
+    ├─ Complejidad: O(V+E) BFS, O((V+E)logV) Dijkstra
+    └─ Dependencias: Habitacion, Grafo existente, LSE
+
+================================================================================
+RELACIONES ENTRE CLASES
+================================================================================
+
+COMPOSICIÓN (contiene):
+  Celda ──────────────────> Entidad (nullable)
+  Celda ──────────────────> Objeto (nullable)
+  MatrizHabitacion ───────> Celda (LSE[LSE[Celda]])
+  Habitacion ─────────────> MatrizHabitacion
+  Habitacion ─────────────> Puerta (LSE[Puerta])
+  GrafoHabitaciones ──────> Habitacion (LSE[Habitacion])
+  GrafoHabitaciones ──────> Grafo (composición)
+
+HERENCIA (es-un):
+  Enemigo ────────────────> Entidad
+  Jugador ────────────────> Entidad
+  Arma ───────────────────> Objeto
+  Pocion ──────────────────> Objeto
+  Llave ───────────────────> Objeto
+
+ASOCIACIÓN (usa/conecta):
+  Celda ──────────────────> TipoCelda
+  Puerta ──────────────────> Habitacion (destino)
+  Enemigo ────────────────> Jugador (persigue)
+
+================================================================================
+TABLA RESUMEN DE MÉTODOS
+================================================================================
+
+Clase                  | Métodos | Complejidad | Prioridad | Dependencias
+-----------------------+---------+-------------+-----------+------------------
+TipoCelda              | 4 vals  | N/A         | ⭐⭐⭐    | Ninguna
+Celda                  | 14      | O(1)        | ⭐⭐⭐    | TipoCelda
+MatrizHabitacion       | 11      | O(n+m)      | ⭐⭐⭐    | Celda, LSE
+Puerta                 | 5       | O(1)        | ⭐⭐     | Ninguna
+Habitacion             | 18      | O(1-n*m)    | ⭐⭐⭐    | MatrizHabitacion, Puerta
+GrafoHabitaciones      | 12      | O(V+E)      | ⭐⭐⭐    | Habitacion, Grafo
+
+TOTAL: 54+ métodos públicos
+
+================================================================================
+ORDEN DE IMPLEMENTACIÓN RECOMENDADO
+================================================================================
+
+FASE 1: TRIVIALES (sin dependencias)
+  1️⃣  TipoCelda (enum)              ← Empezar aquí
+  2️⃣  Puerta                        ← Independiente
+
+FASE 2: BASE (dependen de Fase 1)
+  3️⃣  Celda                         ← Usa TipoCelda
+  4️⃣  MatrizHabitacion              ← Usa Celda, LSE
+
+FASE 3: INTEGRACIÓN (dependen de Fase 2)
+  5️⃣  Habitacion                    ← Usa MatrizHabitacion, Puerta
+  6️⃣  GrafoHabitaciones             ← Usa Habitacion, Grafo existente
+
+Tiempo estimado por clase:
+  - TipoCelda: 5 minutos
+  - Puerta: 15 minutos
+  - Celda: 30 minutos
+  - MatrizHabitacion: 60 minutos (incluye BFS)
+  - Habitacion: 45 minutos
+  - GrafoHabitaciones: 45 minutos
+  ─────────────────────────────────
+  TOTAL: ~3.5 horas de implementación
+
+================================================================================
+RESTRICCIONES CRÍTICAS
+================================================================================
+
+✅ NO usar java.util.* en ninguna clase
+✅ Usar solo estructuras propias: LSE, Grafo, etc.
+✅ Cada clase debe tener tests JUnit
+✅ Javadoc en todos los métodos públicos
+✅ Separación MVC: Estas clases son modelo puro (sin JavaFX)
+✅ Validación de índices en MatrizHabitacion
+✅ Manejo de excepciones personalizadas
+
+================================================================================
+COMPLEJIDADES CRÍTICAS
+================================================================================
+
+MatrizHabitacion.getCelda(fila, columna)
+  └─ O(fila + columna) = O(n+m)
+  └─ Búsqueda secuencial en LSE
+  └─ Aceptable para matrices pequeñas (10x10 a 20x20)
+
+MatrizHabitacion.obtenerCeldasAlcanzables(fila, col, rango)
+  └─ O(n*m) en peor caso
+  └─ BFS desde posición con rango
+  └─ Típicamente mucho menor que n*m en la práctica
+
+GrafoHabitaciones.caminoMinimoHabitaciones(origen, destino)
+  └─ O(V+E) del BFS
+  └─ V ≈ 5-20 habitaciones, E ≈ 2-4 puertas por habitación
+  └─ Muy eficiente para grafos dispersos
+
+GrafoHabitaciones.dijkstraHabitaciones(origen, destino)
+  └─ O((V+E)logV) del Dijkstra
+  └─ Óptimo para caminos ponderados
+
+================================================================================
+NOTAS DE IMPLEMENTACIÓN
+================================================================================
+
+MatrizHabitacion:
+  • Implementar con LSE<LSE<Celda>> para cumplir restricción
+  • Método getCelda() debe iterar hasta encontrar la fila y columna
+  • Considerar cache de fila actual para optimización futura
+  • obtenerCeldasAlcanzables() debe usar BFS con distancia Manhattan
+
+Habitacion:
+  • Encapsula matriz + metadatos
+  • obtenerPuerta(destino) busca en LSE de puertas
+  • obtenerEnemigos() filtra celdas con Entidad != null
+  • obtenerObjetos() filtra celdas con Objeto != null
+
+GrafoHabitaciones:
+  • Usar composición: private Grafo grafo;
+  • NO extender Grafo, usar composición
+  • Métodos de camino delegan a grafo.caminoMinimo() y grafo.dijkstra()
+  • Convertir LSE<Nodo> a LSE<Habitacion> en métodos de camino
+  • Persistencia: usar formato JSON con tripletas RDF
+
+================================================================================
+VALIDACIÓN Y TESTING
+================================================================================
+
+Cada clase debe tener:
+  ✅ Tests JUnit en src/test/java/
+  ✅ Cobertura mínima: 80% de métodos
+  ✅ Casos de prueba para:
+     - Creación y inicialización
+     - Getters y setters
+     - Métodos de lógica
+     - Casos límite (índices inválidos, listas vacías)
+     - Excepciones esperadas
+
+Verificación de restricciones:
+  ✅ Usar @structures-guard para detectar java.util.*
+  ✅ Usar @revisor para revisar código antes de continuar
+  ✅ Usar @docs para añadir Javadoc
+
+================================================================================
+ARCHIVOS DE REFERENCIA
+================================================================================
+
+Estructuras de datos existentes:
+  📁 src/main/java/es/universidad/juego/model/estructuras/src/
+     ├─ LSE/ListaSimplementeEnlazada.java
+     ├─ LDE/ListaDoblementeEnlazada.java
+     ├─ Pila/Pila.java
+     ├─ Colas/Cola/Cola.java
+     ├─ Colas/ColaPrioridad/ColaPrioridadMin.java
+     ├─ Grafos/Grafo.java
+     ├─ Grafos/Nodo.java
+     ├─ Grafos/Arista.java
+     └─ Exceptions/
+
+Clases existentes a usar:
+  📁 src/main/java/es/universidad/juego/model/
+     ├─ entidades/Entidad.java (abstract)
+     ├─ entidades/Jugador.java
+     ├─ entidades/Enemigo.java
+     ├─ objetos/Objeto.java (abstract)
+     ├─ objetos/Arma.java
+     ├─ objetos/Pocion.java
+     └─ objetos/Llave.java
+
+================================================================================
+PRÓXIMOS PASOS
+================================================================================
+
+1. Revisar este documento y el diagrama UML
+2. Implementar clases en orden recomendado
+3. Escribir tests JUnit para cada clase
+4. Usar @revisor para validar código
+5. Usar @structures-guard para verificar restricciones
+6. Usar @docs para añadir Javadoc
+7. Registrar en diario-ia.md cada sesión
+
+================================================================================
+CONTACTO Y SOPORTE
+================================================================================
+
+Documentación completa:
+  📄 docs/uml/README_MODELO_UML.md
+  📄 docs/ESPECIFICACIONES_TECNICAS.md
+  📄 docs/EJEMPLOS_Y_TESTS.md
+
+Diagramas:
+  🖼️  docs/uml/modelo_juego.png (PNG)
+  🖼️  docs/uml/modelo_juego.svg (SVG - recomendado)
+
+Agentes disponibles:
+  🤖 @revisor - Revisar código
+  🤖 @structures-guard - Verificar restricciones
+  🤖 @docs - Añadir documentación
+  🤖 @debug - Depurar errores
+
+================================================================================
+FIN DEL RESUMEN
+================================================================================

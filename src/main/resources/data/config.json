@@ -1,0 +1,31 @@
+{
+  "habitaciones": [
+    {
+      "id": 0,
+      "nombre": "Sala inicial",
+      "filas": 5,
+      "columnas": 5,
+      "posicion_inicial_jugador": [0, 0],
+      "celdas": []
+    },
+    {
+      "id": 1,
+      "nombre": "Sala final",
+      "filas": 4,
+      "columnas": 4,
+      "celdas": []
+    }
+  ],
+  "conexiones": [
+    {"origen": 0, "destino": 1, "peso": 1}
+  ],
+  "habitacion_salida": 1,
+  "turnos_maximos": 50,
+  "jugador": {
+    "nombre": "Héroe",
+    "vida": 100,
+    "ataque": 15,
+    "defensa": 5,
+    "velocidad": 3
+  }
+}

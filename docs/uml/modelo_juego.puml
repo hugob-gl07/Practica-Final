@@ -1,0 +1,203 @@
+@startuml modelo_juego
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam classBackgroundColor #F0F0F0
+skinparam classBorderColor #333333
+skinparam arrowColor #333333
+skinparam fontSize 10
+
+' Enumeraciones
+enum TipoCelda {
+  VACIA
+  PUERTA
+  TRAMPA
+  PARED
+}
+
+' Clases principales
+class Celda {
+  - fila: int
+  - columna: int
+  - entidad: Entidad
+  - objeto: Objeto
+  - tipo: TipoCelda
+  --
+  + Celda(fila, columna)
+  + getFila(): int
+  + getColumna(): int
+  + getEntidad(): Entidad
+  + setEntidad(Entidad): void
+  + getObjeto(): Objeto
+  + setObjeto(Objeto): void
+  + getTipo(): TipoCelda
+  + setTipo(TipoCelda): void
+  + estaVacia(): boolean
+  + tienePuerta(): boolean
+  + tieneTrampa(): boolean
+  + limpiar(): void
+}
+
+class MatrizHabitacion {
+  - filas: LSE
+  - numFilas: int
+  - numColumnas: int
+  --
+  + MatrizHabitacion(numFilas, numColumnas)
+  + getCelda(fila, columna): Celda
+  + setCelda(fila, columna, celda): void
+  + getNumFilas(): int
+  + getNumColumnas(): int
+  + obtenerCeldasAlcanzables(fila, col, rango): LSE
+  + obtenerCeldasConEnemigos(): LSE
+  + obtenerCeldasConObjetos(): LSE
+  + obtenerCeldasConPuertas(): LSE
+  + limpiar(): void
+}
+
+class Puerta {
+  - habitacionDestino: int
+  - etiqueta: String
+  - abierta: boolean
+  --
+  + Puerta(habitacionDestino, etiqueta)
+  + getHabitacionDestino(): int
+  + getEtiqueta(): String
+  + estaAbierta(): boolean
+  + abrir(): void
+  + cerrar(): void
+}
+
+class Habitacion {
+  - id: int
+  - nombre: String
+  - matriz: MatrizHabitacion
+  - puertas: LSE
+  - turnsLimit: int
+  - esExterior: boolean
+  - visitada: boolean
+  --
+  + Habitacion(id, nombre, numFilas, numColumnas)
+  + getId(): int
+  + getNombre(): String
+  + getMatriz(): MatrizHabitacion
+  + getPuertas(): LSE
+  + agregarPuerta(Puerta): void
+  + obtenerPuerta(destino): Puerta
+  + getTurnsLimit(): int
+  + setTurnsLimit(int): void
+  + esExterior(): boolean
+  + setExterior(boolean): void
+  + estaVisitada(): boolean
+  + marcarVisitada(): void
+  + obtenerEnemigos(): LSE
+  + obtenerObjetos(): LSE
+  + limpiar(): void
+}
+
+class GrafoHabitaciones {
+  - grafo: Grafo
+  - habitaciones: LSE
+  - habitacionActual: Habitacion
+  --
+  + GrafoHabitaciones()
+  + agregarHabitacion(Habitacion): void
+  + conectarHabitaciones(h1, h2, etiqueta): void
+  + obtenerHabitacion(id): Habitacion
+  + obtenerHabitacionActual(): Habitacion
+  + cambiarHabitacion(id): void
+  + caminoMinimoHabitaciones(origen, destino): LSE
+  + dijkstraHabitaciones(origen, destino): LSE
+  + obtenerHabitacionesAdyacentes(id): LSE
+  + cargarDesdeJson(ruta): void
+  + guardarEnJson(ruta): void
+  + obtenerTodasHabitaciones(): LSE
+}
+
+' Clases existentes (referencias)
+class Grafo {
+  - entradas: LSE
+  - contador: int
+  --
+  + agregarNodo(nombre): void
+  + agregarArista(origen, destino, etiqueta): void
+  + caminoMinimo(origen, destino): LSE
+  + dijkstra(origen, destino): LSE
+  + cargarDesdeJson(ruta): void
+}
+
+class Entidad {
+  - vida: int
+  - ataque: int
+  - defensa: int
+  - velocidad: int
+  - fila: int
+  - columna: int
+  --
+  + atacar(): int
+  + moverse(fila, columna): void
+}
+
+class Enemigo {
+  - inteligencia: int
+  --
+  + atacar(): int
+  + moverse(fila, columna): void
+  + perseguir(Jugador): void
+}
+
+class Jugador {
+  - inventario: LSE
+  - experiencia: int
+  --
+  + atacar(): int
+  + moverse(fila, columna): void
+  + agregarAlInventario(Objeto): void
+  + usarObjeto(Objeto): void
+}
+
+class Objeto {
+  - nombre: String
+  - descripcion: String
+  --
+  + usar(Entidad): void
+}
+
+' Relaciones
+Celda --> TipoCelda : usa
+Celda --> Entidad : contiene
+Celda --> Objeto : contiene
+
+MatrizHabitacion --> Celda : contiene
+
+Habitacion --> MatrizHabitacion : contiene
+Habitacion --> Puerta : contiene
+Habitacion --> Entidad : contiene
+Habitacion --> Objeto : contiene
+
+GrafoHabitaciones --> Grafo : usa
+GrafoHabitaciones --> Habitacion : contiene
+
+Puerta --> Habitacion : conecta a
+
+Entidad <|-- Enemigo
+Entidad <|-- Jugador
+
+Jugador --> Objeto : inventario
+
+Objeto <|-- Arma
+Objeto <|-- Pocion
+Objeto <|-- Llave
+
+Enemigo --> Jugador : persigue
+
+note right of MatrizHabitacion
+  Implementa LSE[LSE[Celda]]
+  Complejidad acceso: O(n+m)
+end note
+
+note right of GrafoHabitaciones
+  Adapta Grafo existente
+  Reutiliza BFS y Dijkstra
+end note
+
+@enduml

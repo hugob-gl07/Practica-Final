@@ -1,0 +1,191 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                        🚀 INICIO RÁPIDO 🚀                                ║
+║                                                                            ║
+║              Juego de Exploración por Habitaciones - Modelo UML            ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+⏱️  TIEMPO TOTAL: 5 MINUTOS PARA EMPEZAR
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: LEER RESUMEN (2 minutos)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Abre: docs/RESUMEN_MODELO_UML.txt
+
+Esto te dará una visión general de:
+  • Las 6 nuevas clases a implementar
+  • El orden recomendado
+  • Las restricciones críticas
+  • El tiempo estimado (~3.5 horas)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 2: VISUALIZAR DIAGRAMA (2 minutos)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Abre en navegador: docs/uml/modelo_juego.svg
+
+Esto te mostrará:
+  • Todas las clases y sus relaciones
+  • Métodos principales
+  • Atributos
+  • Dependencias
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 3: ENTENDER EL ORDEN (1 minuto)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Implementa en este orden:
+
+1️⃣  TipoCelda (enum)              ← EMPEZAR AQUÍ (5 min)
+2️⃣  Puerta                        ← Independiente (15 min)
+3️⃣  Celda                         ← Usa TipoCelda (30 min)
+4️⃣  MatrizHabitacion              ← Usa Celda, LSE (60 min)
+5️⃣  Habitacion                    ← Usa MatrizHabitacion, Puerta (45 min)
+6️⃣  GrafoHabitaciones             ← Usa Habitacion, Grafo (45 min)
+
+TOTAL: ~3.5 horas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ARCHIVOS CLAVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 LECTURA OBLIGATORIA:
+   docs/INDICE_MAESTRO.md
+   (Guía completa de navegación)
+
+📋 DURANTE IMPLEMENTACIÓN:
+   docs/ESPECIFICACIONES_TECNICAS.md
+   (Especificación exacta de cada clase)
+
+🧪 PARA TESTING:
+   docs/EJEMPLOS_Y_TESTS.md
+   (Casos de prueba JUnit listos)
+
+🖼️  REFERENCIA VISUAL:
+   docs/uml/modelo_juego.svg
+   (Diagrama UML interactivo)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RESTRICCIONES CRÍTICAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ NO usar java.util.* en ninguna clase
+✓ Usar solo estructuras propias: LSE, Grafo, etc.
+✓ Cada clase debe tener tests JUnit
+✓ Javadoc en todos los métodos públicos
+✓ Separación MVC: Clases son modelo puro (sin JavaFX)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AGENTES DISPONIBLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@revisor          - Revisar código en busca de errores
+@structures-guard - Detectar java.util.* prohibido
+@docs             - Añadir Javadoc automáticamente
+@debug            - Depurar errores en tests
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FLUJO DE TRABAJO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Para cada clase:
+
+1. Leer especificación en ESPECIFICACIONES_TECNICAS.md
+2. Revisar ejemplos en EJEMPLOS_Y_TESTS.md
+3. Implementar la clase
+4. Escribir tests JUnit
+5. Ejecutar tests (100% pass)
+6. Usar @structures-guard para verificar restricciones
+7. Usar @revisor para revisar código
+8. Usar @docs para añadir Javadoc
+9. Registrar en diario-ia.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PREGUNTAS FRECUENTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+P: ¿Por dónde empiezo?
+R: Lee INDICE_MAESTRO.md (5 min), luego visualiza modelo_juego.svg (2 min)
+
+P: ¿Cuál es el orden de implementación?
+R: TipoCelda → Puerta → Celda → MatrizHabitacion → Habitacion → GrafoHabitaciones
+
+P: ¿Cuánto tiempo toma?
+R: ~3.5 horas total (5+15+30+60+45+45 minutos)
+
+P: ¿Puedo usar HashMap?
+R: NO. Viola la restricción de no usar java.util.*. Usa LSE.
+
+P: ¿Debo extender Grafo en GrafoHabitaciones?
+R: NO. Usa composición: private Grafo grafo;
+
+P: ¿Dónde están los tests?
+R: En EJEMPLOS_Y_TESTS.md (casos de prueba JUnit listos para copiar)
+
+P: ¿Qué pasa si un índice es inválido?
+R: Lanza ListaIndiceInvalidoExceptions (excepción personalizada)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PRÓXIMOS PASOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Leer este archivo (ya lo estás haciendo ✓)
+2. Leer INDICE_MAESTRO.md (5 min)
+3. Visualizar modelo_juego.svg (2 min)
+4. Leer ESPECIFICACIONES_TECNICAS.md (30 min)
+5. Empezar a implementar TipoCelda (5 min)
+6. Continuar con el resto en orden
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ESTRUCTURA DE ARCHIVOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+docs/
+├── INICIO_RAPIDO.txt                    ← Estás aquí
+├── INDICE_MAESTRO.md                    ← Lee esto primero
+├── RESUMEN_MODELO_UML.txt               ← Resumen ejecutivo
+├── ESPECIFICACIONES_TECNICAS.md         ← Referencia durante implementación
+├── EJEMPLOS_Y_TESTS.md                  ← Casos de prueba
+├── VERIFICACION.md                      ← Checklist
+├── diario-ia.md                         ← Registra tus sesiones aquí
+└── uml/
+    ├── modelo_juego.svg                 ← Diagrama (abre en navegador)
+    ├── modelo_juego.png                 ← Diagrama (PNG)
+    ├── modelo_juego.dot                 ← Fuente Graphviz
+    ├── modelo_juego.puml                ← Fuente PlantUML
+    └── README_MODELO_UML.md             ← Descripción del diagrama
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ESTADÍSTICAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Clases nuevas:       6
+Métodos públicos:    54+
+Documentación:       ~60 KB
+Diagramas:           4 formatos
+Ejemplos de código:  20+
+Casos de prueba:     30+
+Tiempo total:        ~3.5 horas
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¡LISTO PARA EMPEZAR!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Próximo paso: Abre docs/INDICE_MAESTRO.md
+
+¡Buena suerte! 🚀
+

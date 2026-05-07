@@ -1,0 +1,62 @@
+digraph modelo_juego {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor="#F0F0F0", fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+    
+    // Enumeraciones
+    TipoCelda [label="<<enum>>\nTipoCelda\n---\nVACIA\nPUERTA\nTRAMPA\nPARED", fillcolor="#FFE6E6"];
+    
+    // Clases principales
+    Celda [label="Celda\n---\n- fila: int\n- columna: int\n- entidad: Entidad\n- objeto: Objeto\n- tipo: TipoCelda\n---\n+ Celda(fila, columna)\n+ getFila(): int\n+ getColumna(): int\n+ getEntidad(): Entidad\n+ setEntidad(Entidad): void\n+ getObjeto(): Objeto\n+ setObjeto(Objeto): void\n+ getTipo(): TipoCelda\n+ setTipo(TipoCelda): void\n+ estaVacia(): boolean\n+ tienePuerta(): boolean\n+ tieneTrampa(): boolean\n+ limpiar(): void"];
+    
+    MatrizHabitacion [label="MatrizHabitacion\n---\n- filas: LSE[LSE[Celda]]\n- numFilas: int\n- numColumnas: int\n---\n+ MatrizHabitacion(numFilas, numColumnas)\n+ getCelda(fila, columna): Celda\n+ setCelda(fila, columna, celda): void\n+ getNumFilas(): int\n+ getNumColumnas(): int\n+ obtenerCeldasAlcanzables(...): LSE\n+ obtenerCeldasConEnemigos(): LSE\n+ obtenerCeldasConObjetos(): LSE\n+ obtenerCeldasConPuertas(): LSE\n+ limpiar(): void"];
+    
+    Puerta [label="Puerta\n---\n- habitacionDestino: int\n- etiqueta: String\n- abierta: boolean\n---\n+ Puerta(habitacionDestino, etiqueta)\n+ getHabitacionDestino(): int\n+ getEtiqueta(): String\n+ estaAbierta(): boolean\n+ abrir(): void\n+ cerrar(): void"];
+    
+    Habitacion [label="Habitacion\n---\n- id: int\n- nombre: String\n- matriz: MatrizHabitacion\n- puertas: LSE[Puerta]\n- turnsLimit: int\n- esExterior: boolean\n- visitada: boolean\n---\n+ Habitacion(id, nombre, numFilas, numColumnas)\n+ getId(): int\n+ getNombre(): String\n+ getMatriz(): MatrizHabitacion\n+ getPuertas(): LSE\n+ agregarPuerta(Puerta): void\n+ obtenerPuerta(destino): Puerta\n+ getTurnsLimit(): int\n+ setTurnsLimit(int): void\n+ esExterior(): boolean\n+ setExterior(boolean): void\n+ estaVisitada(): boolean\n+ marcarVisitada(): void\n+ obtenerEnemigos(): LSE\n+ obtenerObjetos(): LSE\n+ limpiar(): void"];
+    
+    GrafoHabitaciones [label="GrafoHabitaciones\n---\n- grafo: Grafo\n- habitaciones: LSE[Habitacion]\n- habitacionActual: Habitacion\n---\n+ GrafoHabitaciones()\n+ agregarHabitacion(Habitacion): void\n+ conectarHabitaciones(h1, h2, etiqueta): void\n+ obtenerHabitacion(id): Habitacion\n+ obtenerHabitacionActual(): Habitacion\n+ cambiarHabitacion(id): void\n+ caminoMinimoHabitaciones(...): LSE\n+ dijkstraHabitaciones(...): LSE\n+ obtenerHabitacionesAdyacentes(id): LSE\n+ cargarDesdeJson(ruta): void\n+ guardarEnJson(ruta): void\n+ obtenerTodasHabitaciones(): LSE"];
+    
+    // Clases existentes
+    Grafo [label="Grafo\n---\n- entradas: LSE\n- contador: int\n---\n+ agregarNodo(nombre): void\n+ agregarArista(...): void\n+ caminoMinimo(...): LSE\n+ dijkstra(...): LSE\n+ cargarDesdeJson(ruta): void", fillcolor="#E6F3FF"];
+    
+    Entidad [label="<<abstract>>\nEntidad\n---\n- vida: int\n- ataque: int\n- defensa: int\n- velocidad: int\n- fila: int\n- columna: int\n---\n+ atacar(): int\n+ moverse(fila, columna): void", fillcolor="#E6FFE6"];
+    
+    Enemigo [label="Enemigo\n---\n- inteligencia: int\n---\n+ atacar(): int\n+ moverse(fila, columna): void\n+ perseguir(Jugador): void", fillcolor="#E6FFE6"];
+    
+    Jugador [label="Jugador\n---\n- inventario: LSE[Objeto]\n- experiencia: int\n---\n+ atacar(): int\n+ moverse(fila, columna): void\n+ agregarAlInventario(Objeto): void\n+ usarObjeto(Objeto): void", fillcolor="#E6FFE6"];
+    
+    Objeto [label="<<abstract>>\nObjeto\n---\n- nombre: String\n- descripcion: String\n---\n+ usar(Entidad): void", fillcolor="#FFFFE6"];
+    
+    Arma [label="Arma", fillcolor="#FFFFE6"];
+    Pocion [label="Pocion", fillcolor="#FFFFE6"];
+    Llave [label="Llave", fillcolor="#FFFFE6"];
+    
+    // Relaciones
+    Celda -> TipoCelda [label="usa"];
+    Celda -> Entidad [label="contiene"];
+    Celda -> Objeto [label="contiene"];
+    
+    MatrizHabitacion -> Celda [label="contiene\nLSE[LSE[Celda]]"];
+    
+    Habitacion -> MatrizHabitacion [label="contiene"];
+    Habitacion -> Puerta [label="contiene\nLSE[Puerta]"];
+    Habitacion -> Entidad [label="contiene"];
+    Habitacion -> Objeto [label="contiene"];
+    
+    GrafoHabitaciones -> Grafo [label="usa"];
+    GrafoHabitaciones -> Habitacion [label="contiene\nLSE[Habitacion]"];
+    
+    Puerta -> Habitacion [label="conecta a"];
+    
+    Entidad -> Enemigo [label="hereda", style=dashed];
+    Entidad -> Jugador [label="hereda", style=dashed];
+    
+    Jugador -> Objeto [label="inventario\nLSE[Objeto]"];
+    
+    Objeto -> Arma [label="hereda", style=dashed];
+    Objeto -> Pocion [label="hereda", style=dashed];
+    Objeto -> Llave [label="hereda", style=dashed];
+    
+    Enemigo -> Jugador [label="persigue"];
+}
