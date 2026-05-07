@@ -77,7 +77,39 @@ Invocar `@structures-guard` después de cada clase de estructuras de datos.
 
 ---
 
-### Sesión 2 — 06/05/2026 — Agente: plan
+### Sesión 3 — 07/05/2026 — Agente: plan + build (doculación)
+
+**Objetivo**: Crear modelo UML completo con diagramas y documentación técnica para el juego de exploración por habitaciones.
+
+**Instrucción dada al agente**: 
+> Analizar las estructuras de datos existentes y crear el modelo UML de las 4 nuevas clases (Celda, MatrizHabitacion, Habitacion, GrafoHabitaciones). Generar diagrama UML visual, especificaciones técnicas, ejemplos de uso, casos de prueba JUnit y documentación completa.
+
+**Qué generó**:
+- Diagrama UML en 4 formatos (SVG, PNG, DOT, PUML)
+- 11 archivos de documentación (~60 KB total)
+- Especificaciones técnicas detalladas para 6 clases (54+ métodos)
+- Ejemplos de código y 30+ casos de prueba JUnit
+- Orden de implementación y restricciones críticas
+
+**Qué fue correcto**:
+- Análisis de dependencias entre clases basado en estructuras existentes
+- Recomendación de uso de composición (no herencia) para GrafoHabitaciones
+- Orden de implementación lógico: TipoCelda → Celda → MatrizHabitacion → Habitacion → GrafoHabitaciones
+- Restricciones claramente documentadas (sin java.util.*)
+
+**Qué se corrigió manualmente**:
+- Generé diagrama con Graphviz (no PlantUML) por problemas de sintaxis
+- Creé archivo INICIO_RAPIDO.txt para navegación rápida
+
+**Aprendizaje metodológico**:
+- Documentar primero (especificaciones) reduce errores de implementación
+- Usar múltiples formatos de diagrama aumenta accesibilidad
+- Proporcionar tests JUnit junto con especificaciones facilita el desarrollo
+
+**Ajuste para la próxima sesión**:
+- Implementar las clases siguiendo el orden recomendado
+- Usar @structures-guard después de cada clase
+- Registrar inicio de implementación en diario-ia.md
 
 **Objetivo**: Diseñar las estructuras de datos propias (MyList, MyQueue, MyStack, MyGraph) necesarias para el juego, especificando operaciones y justificando su uso.
 
@@ -123,3 +155,37 @@ Invocar `@structures-guard` después de cada clase de estructuras de datos.
 ---
 
 <!-- añadir nuevas sesiones aquí -->
+
+### Sesión 3 — 07/05/2026 — Agente: plan + build
+
+**Objetivo**: Crear modelo UML completo con diagramas y documentación técnica para el juego de exploración por habitaciones.
+
+**Instrucción dada al agente**: 
+> Analizar las estructuras de datos existentes y crear el modelo UML de las 4 nuevas clases (Celda, MatrizHabitacion, Habitacion, GrafoHabitaciones). Generar diagrama UML visual, especificaciones técnicas, ejemplos de uso, casos de prueba JUnit y documentación completa.
+
+**Qué generó**:
+- Diagrama UML en 4 formatos (SVG, PNG, DOT, PUML)
+- 11 archivos de documentación (~60 KB total)
+- Especificaciones técnicas detalladas para 6 clases (54+ métodos)
+- Ejemplos de código y 30+ casos de prueba JUnit
+- Orden de implementación y restricciones críticas
+
+**Qué fue correcto**:
+- Análisis de dependencias entre clases basado en estructuras existentes
+- Recomendación de uso de composición (no herencia) para GrafoHabitaciones
+- Orden de implementación lógico: TipoCelda → Celda → MatrizHabitacion → Habitacion → GrafoHabitaciones
+- Restricciones claramente documentadas (sin java.util.*)
+
+**Qué se corrigió manualmente**:
+- Generé diagrama con Graphviz (no PlantUML) por problemas de sintaxis
+- Creé archivo INICIO_RAPIDO.txt para navegación rápida
+
+**Aprendizaje metodológico**:
+- Documentar primero (especificaciones) reduce errores de implementación
+- Usar múltiples formatos de diagrama aumenta accesibilidad
+- Proporcionar tests JUnit junto con especificaciones facilita el desarrollo
+
+**Ajuste para la próxima sesión**:
+- Implementar las clases siguiendo el orden recomendado
+- Usar @structures-guard después de cada clase
+- Registrar inicio de implementación en diario-ia.md
