@@ -1,0 +1,46 @@
+@startuml ArbolBusquedaBinaria
+
+skinparam classAttributeIconSize 0
+
+class Nodo<T> {
+    - T dato
+    - Nodo<T> izquierdo
+    - Nodo<T> derecho
+    --
+    + Nodo(T dato)
+    + getDato(): T
+    + setDato(T dato): void
+    + getIzquierdo(): Nodo<T>
+    + setIzquierdo(Nodo<T> n): void
+    + getDerecho(): Nodo<T>
+    + setDerecho(Nodo<T> n): void
+}
+
+class ArbolBusquedaBinaria<T> {
+    # Nodo<T> raiz
+    --
+    + ArbolBusquedaBinaria()
+    + add(T dato): void
+    + getAltura(): int
+    + getGrado(): int
+    + isArbolHomogeneo(): boolean
+    + isArbolCompleto(): boolean
+    + isArbolSemiCompleto(): boolean
+    + getListaOrdenadaCentral(): ListaSimplementeEnlazada<T>
+    + getListaPreOrden(): ListaSimplementeEnlazada<T>
+    + getListaPostOrden(): ListaSimplementeEnlazada<T>
+    + getListaDatosNivel(int nivel): ListaSimplementeEnlazada<T>
+    + getListaCamino(T dato): ListaSimplementeEnlazada<T>
+    + getSubArbolIzquierdo(): ArbolBusquedaBinaria<T>
+    + getSubArbolDerecho(): ArbolBusquedaBinaria<T>
+}
+
+class ArbolBusquedaBinariaEnteros {
+    --
+    + getSuma(): int
+}
+
+ArbolBusquedaBinaria  o-->  Nodo                      : raiz
+ArbolBusquedaBinaria  <|--  ArbolBusquedaBinariaEnteros : extends
+
+@enduml

@@ -1,0 +1,53 @@
+@startuml ArbolB
+
+skinparam classAttributeIconSize 0
+
+class NodoB<T> {
+    # LSEOrdenada<T> datos
+    # ListaSimplementeEnlazada<NodoB<T>> hijos
+    --
+    + NodoB()
+    + getDatos(): LSEOrdenada<T>
+    + getHijos(): ListaSimplementeEnlazada<NodoB<T>>
+    + compareTo(NodoB<T> otro): int
+}
+
+class ArbolB<T> {
+    - NodoB<T> raiz
+    - int orden
+    --
+    + ArbolB(int orden)
+    + isEmpty(): boolean
+    + buscar(T dato): boolean
+    + add(T dato): void
+    + remove(T dato): void
+}
+
+class ResultadoSplit<T> {
+    - T datoQueSube
+    - NodoB<T> hermanoDerecho
+    --
+    + ResultadoSplit(T dato, NodoB<T> hermano)
+    + getDatoQueSube(): T
+    + setDatoQueSube(T dato): void
+    + getHermanoDerecho(): NodoB<T>
+    + setHermanoDerecho(NodoB<T> hermano): void
+}
+
+class ListaNodos<T> {
+    # ElementoSE<T> primero
+    # int tamanio
+    --
+    + add(T dato): void
+    + isEmpty(): boolean
+    + getSize(): int
+    + getAt(int posicion): T
+    + removeAt(int posicion): T
+    + insertAt(int posicion, T dato): T
+}
+
+ArbolB  o-->  NodoB          : raiz
+ArbolB  ..>   ResultadoSplit : crea en split
+NodoB   o-->  ListaNodos     : hijos
+
+@enduml

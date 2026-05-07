@@ -1,0 +1,104 @@
+ @startuml
+class IteradorLDE<T>{
+    - actual:ElementoDE<T>
+    + public IteradorLDE(ElementoDE<T> inicio)
+    + next():T
+    + hasNext():boolean
+}
+class ElementoDE<T>{
+    # dato:T
+    # siguiente:ElementoDE<T>
+    # anterior:ElementoDE<T>
+    + ElementoDE(dato:T)
+}
+interface Iterador<T>{
+    + hasNext():boolean
+    + next():T
+}
+class LDEOrdenada<T extends Comparable<T>>{
+    + add(dato:T):T
+}
+class ListaDoblementeEnlazada <T extends Comparable<T>>{
+    + get(dato:T):T
+    + getAt(posición:int):T
+    + insertAt(posición:int, dato:T):T
+    + removeAt(posición:int):T
+    + del(dato:T):T
+    + isEmpty():boolean
+    + getIterador():Iterador<T>
+    + addFirst(dato:T):T
+    + add(dato:T):T
+    + getSize():int
+    + getFirst():T
+    + getLast():T
+    + clear():T
+    + removeFirst():T
+    + removeLast():T
+    + toString():String
+}
+LDEOrdenada -down-|> ListaDoblementeEnlazada : extends
+IteradorLDE .up.|> Iterador : implements
+ListaDoblementeEnlazada *--* ElementoDE : composición
+ListaDoblementeEnlazada ..> Iterador : retorna
+
+note right of ListaDoblementeEnlazada::isEmpty
+**DEVUELVE TRUE SI ESTA VACIA, FALSE SI NO**
+end note
+
+note right of ListaDoblementeEnlazada::get
+**BUSCA POR VALOR**
+end note
+
+note left of ListaDoblementeEnlazada::getAt
+**OBTIENE POR POSICIÓN**
+end note
+
+note right of ListaDoblementeEnlazada::insertAt
+**INSERTA EN POSICIÓN**
+end note
+
+note left of ListaDoblementeEnlazada::removeAt
+**ELIMINA POR POSICIÓN**
+end note
+
+note right of ListaDoblementeEnlazada::del
+**BUSCA Y ELIMINA**
+end note
+
+note left of ListaDoblementeEnlazada::getIterador
+**ITERADOR**
+end note
+
+note right of ListaDoblementeEnlazada::addFirst
+**INSERTA AL INICIO**
+end note
+
+note left of ListaDoblementeEnlazada::add
+**INSERTA AL FINAL**
+end note
+
+note right of ListaDoblementeEnlazada::getSize
+**DEVUELVE TAMAÑO LISTA**
+end note
+
+note left of ListaDoblementeEnlazada::getFirst
+**DEVUELVE PRIMER ELEMENTO DE LA LISTA**
+end note
+
+note right of ListaDoblementeEnlazada::clear
+**VACIA LA LISTA COMPLETA**
+end note
+
+note left of ListaDoblementeEnlazada::removeFirst
+**ELIMINA Y DEVUELVE PRIMER ELEMENTO**
+end note
+
+note right of ListaDoblementeEnlazada::removeLast
+**ELIMINA Y DEVUELVE ÚLTIMO ELEMENTO**
+end note
+
+note left of ListaDoblementeEnlazada::toString
+**REPRESENTACIÓN DE LA LISTA**
+end note
+
+@enduml
