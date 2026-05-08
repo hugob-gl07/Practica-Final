@@ -1,0 +1,16 @@
+@startuml ParIdNombre
+class ParIdNombre {
+  - idHabitacion: int
+  - nombreNodo: String
+  --
+  + ParIdNombre(id: int, nombre: String)
+  + getIdHabitacion(): int
+  + setIdHabitacion(id: int): void
+  + getNombreNodo(): String
+  + setNombreNodo(nombre: String): void
+  + compareTo(o: ParIdNombre): int
+  + equals(obj: Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+@enduml

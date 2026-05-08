@@ -1,0 +1,26 @@
+@startuml Celda
+class Celda {
+  - x: int
+  - y: int
+  - tipo: TipoCelda
+  --
+  + Celda(x: int, y: int, tipo: TipoCelda)
+  + Celda(x: int, y: int)
+  + getX(): int
+  + getY(): int
+  + getTipo(): TipoCelda
+  + setX(x: int): void
+  + setY(y: int): void
+  + setTipo(tipo: TipoCelda): void
+  + mismaPosicion(otra: Celda): boolean
+  + esTransitable(): boolean
+  + tieneEnemigo(): boolean
+  + tieneObjeto(): boolean
+  + coordenadasValidas(maxFilas: int, maxColumnas: int): boolean
+  + cambiarTipo(nuevoTipo: TipoCelda): boolean
+  + obtenerRepresentacion(): char
+  + equals(obj: Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+@enduml

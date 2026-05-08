@@ -1,0 +1,21 @@
+@startuml GrafoHabitacion
+class GrafoHabitacion {
+  - grafo: Grafo
+  - idnombre: ListaSimplementeEnlazada<ParIdNombre>
+  - habitaciones: ListaSimplementeEnlazada<ParNombreHabitacion>
+  --
+  + GrafoHabitacion()
+  + agregarHabitacion(habitacion: Habitacion): void
+  + conectarHabitaciones(hab1: Habitacion, hab2: Habitacion): void
+  + obtenerHabitacion(id: int): Habitacion
+  + obtenerHabitaciones(habitacion: Habitacion): ListaSimplementeEnlazada<Habitacion>
+  + buscarRuta(habInicio: Habitacion, habFin: Habitacion): ListaSimplementeEnlazada<Habitacion>
+  + calcularDistancia(hab1: Habitacion, hab2: Habitacion): int
+  + esConexo(): boolean
+  - buscarNombrePorId(idBuscado: int): String
+  - buscarHabitacionPorNombre(nombre: String): Habitacion
+  + equals(obj: Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+@enduml
