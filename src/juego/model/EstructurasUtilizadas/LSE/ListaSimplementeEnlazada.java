@@ -165,6 +165,15 @@ public class ListaSimplementeEnlazada<T extends Comparable<T>> {
         return borrar.dato;
     }
 
+    /**
+     * Vaciar la lista eliminando todos sus elementos
+     * Al poner primero a null, los nodos quedan sin referencia y el garbage collector los elimina automáticamente
+     */
+    public void clear(){
+        primero=null;
+        tamaño=0;
+    }
+
     /** Devuelve una representación en texto de la lista.*/
     @Override
     public String toString(){

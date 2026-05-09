@@ -68,5 +68,7 @@ public class Habitacion implements Comparable<Habitacion> {
                 ", matriz=\n" + matriz.toString() +
                 '}';
     }
-
+    public int compareTo(Habitacion o) {
+        return this.id - o.id;
+    }
 }
