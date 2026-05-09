@@ -54,5 +54,53 @@ public class Enemigo {
         return nombre;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public TipoEnemigo getTipo() {
+        return tipo;
+    }
+
+    public int getVidaActual() {
+        return vidaActual;
+    }
+
+    public void setVidaActual(int vidaActual) {
+        this.vidaActual = vidaActual;
+    }
+
+    public int getVidamaxima() {
+        return vidamaxima;
+    }
+
+    public int getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(int ataque) {
+        this.ataque = ataque;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    public void setDefensa(int defensa) {
+        this.defensa = defensa;
+    }
+
+    public Objeto[] getLoot() {
+        return loot;
+    }
+
+    public void setLoot(Objeto[] loot) {
+        this.loot = loot;
+    }
+
+    public int getVidaMaxima() {
+        return vidamaxima;
+    }
+
 
 }

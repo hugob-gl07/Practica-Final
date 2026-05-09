@@ -64,4 +64,16 @@ public class Inventario {
         objetos.clear();
         pesoTotal = 0;
     }
+
+    public int getCapacidadMaxima() {
+        return capacidadesmaxima;
+    }
+
+    public float getPesoTotal() {
+        return pesoTotal;
+    }
+
+    public void setPesoTotal(float pesoTotal) {
+        this.pesoTotal = pesoTotal;
+    }
 }

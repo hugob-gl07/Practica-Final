@@ -41,6 +41,18 @@ public class Objeto implements Comparable<Objeto>{
     public float getPeso() {
         return peso;
     }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setEfecto(String efecto) {
+        this.efecto = efecto;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
     public void addEstadistica(String nombre, int valor) {
         nombreEstadisticas[numeroEstadisticas] = nombre;
         valorEstadisticas[numeroEstadisticas] = valor;

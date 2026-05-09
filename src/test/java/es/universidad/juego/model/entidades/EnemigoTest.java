@@ -10,11 +10,11 @@ class EnemigoTest {
         Enemigo enemigo = new Enemigo(1, "Orco", TipoEnemigo.ORCO, 100, 15, 5);
 
         assertEquals("Orco", enemigo.getNombre());
-        assertEquals(TipoEnemigo.ORCO, enemigo.tipo);
-        assertEquals(100, enemigo.vidaActual);
-        assertEquals(100, enemigo.vidamaxima);
-        assertEquals(15, enemigo.ataque);
-        assertEquals(5, enemigo.defensa);
+        assertEquals(TipoEnemigo.ORCO, enemigo.getTipo());
+        assertEquals(100, enemigo.getVidaActual());
+        assertEquals(100, enemigo.getVidamaxima());
+        assertEquals(15, enemigo.getAtaque());
+        assertEquals(5, enemigo.getDefensa());
     }
 
     @Test
@@ -68,8 +68,8 @@ class EnemigoTest {
 
         enemigo.recibirDaño(30);
 
-        assertTrue(enemigo.vidaActual <= 70);
-        assertTrue(enemigo.vidaActual >= 0);
+        assertTrue(enemigo.getVidaActual() <= 70);
+        assertTrue(enemigo.getVidaActual() >= 0);
     }
 
     @Test
@@ -78,7 +78,7 @@ class EnemigoTest {
 
         enemigo.recibirDaño(100);
 
-        assertTrue(enemigo.vidaActual <= 0);
+        assertTrue(enemigo.getVidaActual() <= 0);
     }
 
     @Test
@@ -87,8 +87,8 @@ class EnemigoTest {
 
         enemigo.recibirDaño(60);
 
-        assertTrue(enemigo.vidaActual >= 0,
-            "BUG: vidaActual = " + enemigo.vidaActual + " (deberia ser >= 0)");
+        assertTrue(enemigo.getVidaActual() >= 0,
+            "BUG: vidaActual = " + enemigo.getVidaActual() + " (deberia ser >= 0)");
     }
 
     @Test
@@ -99,8 +99,8 @@ class EnemigoTest {
         enemigo.recibirDaño(20);
         enemigo.recibirDaño(20);
 
-        assertTrue(enemigo.vidaActual >= 0,
-            "BUG: vidaActual = " + enemigo.vidaActual + " despues de 3 danos de 20");
+        assertTrue(enemigo.getVidaActual() >= 0,
+            "BUG: vidaActual = " + enemigo.getVidaActual() + " despues de 3 danos de 20");
     }
 
     @Test
