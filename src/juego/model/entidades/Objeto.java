@@ -1,16 +1,16 @@
 package juego.model.entidades;
 
 public class Objeto implements Comparable<Objeto>{
-    private int id;
-    private String nombre;
-    private  TipoObjeto tipo;
-    private Rareza rareza;
-    private String descripcion;
-    private String [] nombreEstadisticas;
-    private int[] valorEstadisticas;
-    private int numeroEstadisticas;
-    private String efecto;
-    private float peso;
+    protected int id;
+    protected String nombre;
+    protected TipoObjeto tipo;
+    protected Rareza rareza;
+    protected String descripcion;
+    protected String [] nombreEstadisticas;
+    protected int[] valorEstadisticas;
+    protected int numeroEstadisticas;
+    protected String efecto;
+    protected float peso;
     public Objeto(int id, String nombre, TipoObjeto tipo , Rareza rareza) {
         this.id = id;
         this.nombre = nombre;

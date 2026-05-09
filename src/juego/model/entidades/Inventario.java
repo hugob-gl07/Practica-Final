@@ -3,9 +3,9 @@ package juego.model.entidades;
 import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
 
 public class Inventario {
-    private int capacidadesmaxima;
-    private ListaSimplementeEnlazada<Objeto> objetos;
-    private float pesoTotal;
+    protected int capacidadesmaxima;
+    protected ListaSimplementeEnlazada<Objeto> objetos;
+    protected float pesoTotal;
 
     public Inventario(int capacidad) {
         this.capacidadesmaxima = capacidad;

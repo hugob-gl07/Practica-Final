@@ -4,18 +4,18 @@ import juego.model.EstructurasUtilizadas.ListaCircular.ListaCircular;
 import juego.model.habitación.Celda;
 
 public class Jugador {
-    private int id;
-    private String nombre;
-    private int nivel;
-    private int experiencia;
-    private int vidaActual;
-    private int vidaMaxima;
-    private int ataque;
-    private int defensa;
-    private int mana;
-    private Celda posicion;
-    private Inventario inventario;
-    private ListaCircular <String> historialAcciones;
+    protected int id;
+    protected String nombre;
+    protected int nivel;
+    protected int experiencia;
+    protected int vidaActual;
+    protected int vidaMaxima;
+    protected int ataque;
+    protected int defensa;
+    protected int mana;
+    protected Celda posicion;
+    protected Inventario inventario;
+    protected ListaCircular <String> historialAcciones;
 
     public Jugador(String nombre, Celda posicion){
         this.id=1;
