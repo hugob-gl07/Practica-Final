@@ -1,0 +1,21 @@
+@startuml TipoCelda
+  enum TipoCelda {
+    VACIO
+    PARED
+    ENTRADA
+    SALIDA
+    OBJETO
+    ENEMIGO
+    JUGADOR
+    --
+    + esTransitable(): boolean
+    + puedeContenerObjetos(): boolean
+    + esObstaculo(): boolean
+    + obtenerCaracterRepresentativo(): char
+    + obtenerColorRepresentativo(): String
+    + puedeContenerEntidad(): boolean
+    + requiereInteraccion(): boolean
+    + {static} obtenerTodosLosTipos(): String[]
+    + {static} obtenerTiposTransitables(): TipoCelda[]
+  }
+  @enduml

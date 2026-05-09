@@ -1,0 +1,18 @@
+@startuml MatrizHabitacion
+class MatrizHabitacion {
+  - matriz: Celda[][]
+  - filas: int
+  - columnas: int
+  --
+  + MatrizHabitacion(filas: int, columnas: int)
+  + getFilas(): int
+  + getColumnas(): int
+  + getCelda(fila: int, columna: int): Celda
+  + setCelda(fila: int, columna: int, celda: Celda): void
+  + esTransitable(fila: int, columna: int): boolean
+  + esValida(fila: int, columna: int): boolean
+  + buscarCeldasPorTipo(tipo: TipoCelda): ListaSimplementeEnlazada<Celda>
+  + toString(): String
+}
+
+@enduml

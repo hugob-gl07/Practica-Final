@@ -1,0 +1,27 @@
+@startuml Habitacion
+class Habitacion {
+  - id: int
+  - nombre: String
+  - matriz: MatrizHabitacion
+  --
+  + Habitacion(id: int, nombre: String, filas: int, columnas: int)
+  + getId(): int
+  + setId(id: int): void
+  + getNombre(): String
+  + setNombre(nombre: String): void
+  + getMatriz(): MatrizHabitacion
+  + getFilas(): int
+  + getColumnas(): int
+  + getCelda(fila: int, columna: int): Celda
+  + setCelda(fila: int, columna: int, celda: Celda): void
+  + esTransitable(fila: int, columna: int): boolean
+  + tieneCelda(tipoCelda: TipoCelda): boolean
+  + buscarCelda(tipoCelda: TipoCelda): Celda
+  + buscarCeldasPorTipo(tipo: TipoCelda): ListaSimplementeEnlazada<Celda>
+  + buscarEntrada(): Celda
+  + buscarSalida(): Celda
+  + equals(obj: Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+@enduml
