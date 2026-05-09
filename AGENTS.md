@@ -79,3 +79,14 @@ El profesor exige un diario de utilización del agente con:
 - Ajustes realizados para la siguiente sesión
 
 Registrar cada sesión relevante en `diario-ia.md`.
+
+## Decisiones tomadas — NO preguntar de nuevo
+
+- Grafo no dirigido, puertas bidireccionales
+- Peso 1 en todas las aristas
+- MyStack opcional, implementar al final
+- El código lo escribe el alumno, el agente solo revisa, testea y documenta
+- Orden de implementación: TipoCelda → Celda → MatrizHabitacion → Habitacion → GrafoHabitaciones → Entidades → Lógica → JavaFX
+- Estructura del proyecto: src/juego/model/
+- Cada miembro tiene su propio diario-ia personal en su rama
+- Rama protegida: todo cambio a main pasa por Pull Request aprobado por Hugo
