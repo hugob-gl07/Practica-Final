@@ -26,12 +26,13 @@ public class Inventario {
 
     public Objeto removeObjeto(int id) {
         Objeto objeto = null;
-        for(int i = 0; i < objetos.getSize(); i++){
+        boolean encontrado = false;
+        for(int i = 0; i < objetos.getSize() && !encontrado; i++){
             if(objetos.getAt(i).getId() == id) {
                 objeto = objetos.getAt(i);
                 objetos.removeAt(i);
                 pesoTotal -= objeto.getPeso();
-                break;
+                encontrado = true;
             }
         }
         return objeto;
