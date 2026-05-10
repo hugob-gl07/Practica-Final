@@ -1,0 +1,60 @@
+@startuml
+class ElementoSE<T>{
+    # dato:T
+    # siguiente:ElementoSE<T>
+    + ElementoSE(dato:T)
+}
+interface Iterador<T>{
+    + hasNext():boolean
+    + next():T
+}
+class IteradorLSE<T> implements Iterador<T>{
+    - actual:ElementoSE<T>
+    + Iterador(inicio:ElementoSE<T>)
+    + next():T
+    + hasNext():boolean
+}
+class ListaSimplementeEnlazada{
+    # dato:T
+    # siguiente:ElementoSE<T>
+    + ListaSimplementeEnlazada()
+    + get(dato:T):T
+    + del(dato:T):T
+    + add(dato:T):void
+    + isEmpty():boolean
+    + getAt(posición:int):T
+    + insertAt(posición:int,dato:T):T
+    + removeAt(posición:int):T
+}
+class LSEOrdenada<T extends Comparable<T>> extends ListaSimplementeEnlazada<T>{
+    + add(dato:T):void
+}
+ListaSimplementeEnlazada *-- ElementoSE: primero
+IteradorLSE *-- ElementoSE:actual
+ListaSimplementeEnlazada ..> Iterador
+
+note left of ListaSimplementeEnlazada::get(dato:T)
+**BUSCA POR VALOR**
+end note
+
+note left of ListaSimplementeEnlazada::del(dato:T)
+**ELIMINAR POR VALOR**
+end note
+
+note right of ListaSimplementeEnlazada::add(dato:T)
+**AÑADE AL FINAL**
+end note
+
+note right of ListaSimplementeEnlazada::getAt(posición:int)
+**ACCESO POR INDICE**
+end note
+
+note right of ListaSimplementeEnlazada::insertAt
+**INSERTAR POR POSICIÓN**
+end note
+
+note left of ListaSimplementeEnlazada::removeAt
+**ELIMINAR POR POSICIÓN**
+end note
+
+@enduml
