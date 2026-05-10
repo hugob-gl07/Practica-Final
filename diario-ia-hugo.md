@@ -1,8 +1,33 @@
 # Diario de IA - Hugo
 
 **Proyecto**: Juego de exploración por habitaciones — Práctica Conjunta ED + MP
-**Fecha**: 09/05/2026
+**Fecha**: 10/05/2026
 **Herramienta**: OpenCode 1.14.39
+
+---
+
+## Sesión 10 — 10/05/2026 — Revisión y corrección de código
+
+**Objetivo**: Revisar todo el proyecto, identificar errores y corregir tests
+
+**Correcciones realizadas**:
+1. **Fórmula de combate**: Corregida según documento de prácticas
+   - Jugador.atacar(): máximo(0, ataque * aleatorio * 2 - defensaEnemigo)
+   - Enemigo.atacar(Jugador): máximo(0, ataque * aleatorio * 2 - defensaJugador)
+
+2. **Tests de Jugador**: Corregido constructor (ahora requiere 3 parámetros)
+   - Añadido parámetro habitacioninicial
+
+3. **Packages de tests**: Corregidos de juego.model.entidades a es.universidad.juego.model.entidades
+
+4. **Imports en tests**: Añadidos imports de clases del modelo (Enemigo, Jugador, Objeto, etc.)
+
+5. **Test Enemigo.atacar()**: Corregido para usar el nuevo método con parámetro Jugador
+
+**Aprendizaje metodológico**:
+- Importante mantener sincronización con GitHub antes de hacer cambios
+- Los tests deben actualizarse cuando los métodos cambian su firma
+- Los packages deben coincidir entre código fuente y tests
 
 ---
 
@@ -166,3 +191,56 @@ public enum TipoObjeto {
 - No se pueden crear instancias externas del enum
 - IDE autocomplete para todos los valores
 - Tipo seguro (no admite valores arbitrarios)
+
+---
+
+## Sesión 10 — 10/05/2026 — Enums con atributos y GitHub
+
+**Aprendizaje sobre enums con atributos**:
+
+Los enums pueden tener atributos asociados como multiplicadores y descripciones:
+
+```java
+public enum TipoObjeto {
+    ARMA("Aumenta el daño", 1.5),
+    POCIMA_VIDA("Curación", 1.0),
+    ARMADURA("Aumenta la defensa", 1.3),
+    LLAVE("Abre puertas", 1.0),
+    TESORO("Objeto de valor", 2.0),
+    CONSUMIBLE("Se agota al usar", 1.0),
+    POCIMA_MANA("Restaura maná", 1.0);
+
+    private final String descripcion;
+    private final double multiplicador;
+
+    private TipoObjeto(String descripcion, double multiplicador) {
+        this.descripcion = descripcion;
+        this.multiplicador = multiplicador;
+    }
+
+    public String getDescripcion() { return descripcion; }
+    public double getMultiplicador() { return multiplicador; }
+}
+```
+
+**Aprendizaje sobre constructores privados en enums**:
+- Los constructores de enum son siempre `private` (implícito o explícito)
+- No se puede instanciar un enum con `new`
+- Se usan para inicializar los atributos de cada constante
+
+**Aprendizaje sobre GitHub**:
+- Los cambios se suben con: `git add .`, `git commit -m "mensaje"`, `git push origin main`
+- Si hay conflictos, hacer `git pull origin main --rebase` antes de push
+- Commit automático: "Bypassed rule violations" indica que se saltó el pull request
+
+---
+
+## Notas sobre GitHub y ramas
+
+**Comandos útiles**:
+- `git status` - Ver cambios pendientes
+- `git add .` - Añadir todos los cambios
+- `git commit -m "mensaje"` - Crear commit
+- `git push origin main` - Subir a GitHub
+- `git pull origin main` - Descargar cambios
+- `git pull origin main --rebase` - Descargar con rebase si hay conflictos
