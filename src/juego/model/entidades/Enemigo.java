@@ -23,10 +23,10 @@ public class Enemigo {
     }
 
     public void recibirDaño(int daño){
-        if(vidaActual <0){
-            vidaActual= 0;
+        vidaActual -= daño;
+        if(vidaActual < 0){
+            vidaActual = 0;
         }
-        vidaActual-=daño;
     }
     public int atacar(){
         return ataque;
@@ -35,7 +35,7 @@ public class Enemigo {
         return defensa;
     }
     public boolean estaMuerto(){
-        return vidaActual ==0;
+        return vidaActual <= 0;
     }
     public Objeto getObjeto(int indice){
         if(indice>=0 && indice<loot.length){

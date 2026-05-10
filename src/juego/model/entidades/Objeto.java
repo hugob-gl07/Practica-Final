@@ -59,8 +59,11 @@ public class Objeto implements Comparable<Objeto>{
         numeroEstadisticas++;
     }
     public int getValorEstadisticas(String nombre) {
+        if (nombre == null) {
+            return 0;
+        }
         for (int i = 0; i < numeroEstadisticas; i++) {
-            if(nombreEstadisticas[i].equals(nombre)){
+            if(nombreEstadisticas[i] != null && nombreEstadisticas[i].equals(nombre)){
                 return valorEstadisticas[i];
             }
         }
