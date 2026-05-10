@@ -16,6 +16,7 @@ public class Jugador {
     protected Celda posicion;
     protected Inventario inventario;
     protected ListaCircular <String> historialAcciones;
+    protected int rangoMovimiento;
 
     public Jugador(String nombre, Celda posicion){
         this.id=1;
@@ -30,6 +31,7 @@ public class Jugador {
         this.posicion=posicion;
         this.inventario=new Inventario(10);
         this.historialAcciones=new ListaCircular<>();
+        this.rangoMovimiento=3;
     }
 
     public void addExperiencia(int exp){
@@ -180,6 +182,13 @@ public class Jugador {
 
     public ListaCircular<String> getHistorialAccionesObj() {
         return historialAcciones;
+    }
+
+    public int getRangoMovimiento() {
+        return rangoMovimiento;
+    }
+    public void setRangoMovimiento(int rangoMovimiento) {
+        this.rangoMovimiento = rangoMovimiento;
     }
 
 

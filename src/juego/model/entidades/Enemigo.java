@@ -1,7 +1,10 @@
 package juego.model.entidades;
+import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
 import juego.model.habitación.Celda;
+import juego.model.habitación.Habitacion;
 
-public class Enemigo {
+
+public class Enemigo implements Comparable<Enemigo> {
     protected int id;
     protected String nombre;
     protected TipoEnemigo tipo;
@@ -11,11 +14,13 @@ public class Enemigo {
     protected int defensa;
     protected Celda posicion;
     protected Objeto[] loot;
+    protected int velocidad;
 
     public Enemigo(int id, String nombre, TipoEnemigo tipo, int vidamaxima, int ataque, int defensa) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
+        this.vidamaxima = vidamaxima;
         this.vidaActual = vidamaxima;
         this.ataque = ataque;
         this.defensa = defensa;
@@ -42,6 +47,23 @@ public class Enemigo {
             return loot[indice];
         }
         return null;
+    }
+
+    public void moverHacia(Jugador jugador, Habitacion habitacion){
+        Celda celdaMasCercana= null;
+        int menordistancia=Integer.MAX_VALUE;
+        ListaSimplementeEnlazada<Celda> casillas= habitacion.obtenerCasillasAlcanzables(posicion.getX(),posicion.getY(),velocidad);
+        for(int indice=0;indice<casillas.getSize();indice++){
+            Celda celda=casillas.getAt(indice);
+            int dist= Math.abs(celda.getX()-jugador.getPosicion().getX())+ Math.abs(celda.getY()-jugador.getPosicion().getY());
+            if(dist<menordistancia){
+                menordistancia=dist;
+                celdaMasCercana=celda;
+            }
+        }
+        if(celdaMasCercana!=null){
+            posicion=celdaMasCercana;
+        }
     }
     public Celda getPosicion(){
         return posicion;
@@ -100,6 +122,11 @@ public class Enemigo {
 
     public int getVidaMaxima() {
         return vidamaxima;
+    }
+
+    @Override
+    public int compareTo(Enemigo enemigo) {
+            return Integer.compare(this.ataque, enemigo.getAtaque());
     }
 
 
