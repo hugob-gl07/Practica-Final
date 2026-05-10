@@ -296,7 +296,7 @@ class JugadorTest {
     
     @Test
     void testEstaSalud_MultipleDanios() {
-        Jugador j = new Jugador("Test", celdaInicial, 1);
+        Jugador j = new Jugador("Test", celdaInicial);
         
         j.recibirDaño(30);
         assertTrue(j.estaSalud());
