@@ -106,6 +106,14 @@ public class Jugador {
         this.id = id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getNivel() {
         return nivel;
     }
@@ -122,6 +130,10 @@ public class Jugador {
         this.experiencia = experiencia;
     }
 
+    public int getVidaActual() {
+        return vidaActual;
+    }
+
     public void setVidaActual(int vidaActual) {
         this.vidaActual = vidaActual;
     }
@@ -134,8 +146,16 @@ public class Jugador {
         this.vidaMaxima = vidaMaxima;
     }
 
+    public int getAtaque() {
+        return ataque;
+    }
+
     public void setAtaque(int ataque) {
         this.ataque = ataque;
+    }
+
+    public int getDefensa() {
+        return defensa;
     }
 
     public void setDefensa(int defensa) {
