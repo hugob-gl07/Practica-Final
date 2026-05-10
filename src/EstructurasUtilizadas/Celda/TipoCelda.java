@@ -22,9 +22,9 @@ public enum TipoCelda {
             case ENTRADA:
             case SALIDA:
             case OBJETO:
+            case ENEMIGO:
                 return true;
             case PARED:
-            case ENEMIGO:
             case JUGADOR:
                 return false;
             default:
@@ -39,11 +39,11 @@ public enum TipoCelda {
     public boolean puedeContenerObjetos() {
         switch(this) {
             case VACIO:
+            case OBJETO:
+                return true;
             case ENTRADA:
             case SALIDA:
-                return true;
             case PARED:
-            case OBJETO:
             case ENEMIGO:
             case JUGADOR:
                 return false;
@@ -83,14 +83,14 @@ public enum TipoCelda {
      */
     public String obtenerColorRepresentativo() {
         switch(this) {
-            case VACIO: return "BLANCO";
-            case PARED: return "GRIS";
-            case ENTRADA: return "VERDE";
-            case SALIDA: return "ROJO";
-            case OBJETO: return "AMARILLO";
-            case ENEMIGO: return "NEGRO";
-            case JUGADOR: return "AZUL";
-            default: return "MAGENTA";
+            case VACIO:   return "#FFFFFF";
+            case PARED:   return "#000000";
+            case ENTRADA: return "#00FF00";
+            case SALIDA:  return "#FF0000";
+            case OBJETO:  return "#FFFF00";
+            case ENEMIGO: return "#FF00FF";
+            case JUGADOR: return "#0000FF";
+            default:      return "#FFFFFF";
         }
     }
     /**
@@ -119,13 +119,13 @@ public enum TipoCelda {
      */
     public boolean requiereInteraccion() {
         switch(this) {
-            case OBJETO:
-            case ENEMIGO:
+            case ENTRADA:
             case SALIDA:
+            case OBJETO:
                 return true;
             case VACIO:
             case PARED:
-            case ENTRADA:
+            case ENEMIGO:
             case JUGADOR:
                 return false;
             default:
