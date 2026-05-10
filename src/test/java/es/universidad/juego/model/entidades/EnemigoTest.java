@@ -2,6 +2,9 @@ package es.universidad.juego.model.entidades;
 
 import juego.model.entidades.Enemigo;
 import juego.model.entidades.TipoEnemigo;
+import juego.model.entidades.Jugador;
+import es.universidad.juego.model.habitación.Celda;
+import es.universidad.juego.model.habitación.TipoCelda;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,8 +25,16 @@ class EnemigoTest {
     @Test
     void testAtacar_RetornaAtaque() {
         Enemigo enemigo = new Enemigo(1, "Orco", TipoEnemigo.ORCO, 100, 15, 5);
-
-        assertEquals(15, enemigo.atacar());
+        
+        // Crear un jugador mock para probar el ataque
+        Celda celda = new Celda(0, 0, TipoCelda.SUELO);
+        Jugador jugador = new Jugador("Test", celda, 1);
+        jugador.setDefensa(0); // Sin defensa para simplificar
+        
+        int daño = enemigo.atacar(jugador);
+        
+        // El daño debe ser mayor que 0 (ataque * aleatorio * 2)
+        assertTrue(daño > 0);
     }
 
     @Test
