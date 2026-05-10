@@ -1,12 +1,11 @@
 package juego.model.entidades;
 
-import juego.model.EstructurasUtilizadas.Grafos.Grafo;
 import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
 import juego.model.EstructurasUtilizadas.ListaCircular.ListaCircular;
-import juego.model.habitación.Celda;
-import juego.model.habitación.GrafoHabitacion;
-import juego.model.habitación.Habitacion;
-import juego.model.habitación.TipoCelda;
+import juego.model.habitacion.Celda;
+import juego.model.habitacion.GrafoHabitacion;
+import juego.model.habitacion.Habitacion;
+import juego.model.habitacion.TipoCelda;
 
 /**
  * Representa al personaje controlado por el jugador.

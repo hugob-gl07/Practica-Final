@@ -1,4 +1,4 @@
-package es.universidad.juego.model.entidades;
+package test.java.es.universidad.juego.model.entidades;
 
 import juego.model.entidades.Inventario;
 import juego.model.entidades.Objeto;

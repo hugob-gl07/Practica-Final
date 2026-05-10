@@ -236,12 +236,23 @@ public class ArbolRojoNegro {
         fixInsert(nuevo); // Restauramos las propiedades Rojo-Negro desde el nuevo nodo
     }
 
+    /**
+     * Recorre el subárbol en orden central (izquierdo → raíz → derecho)
+     * imprimiendo cada valor seguido de su color (R = rojo, N = negro).
+     * @param nodo raíz del subárbol a recorrer
+     */
     private void inorden(NodoRojoNegro nodo) {
-        if (nodo == null) return;
-        inorden(nodo.getIzquierdo());
-        System.out.println(nodo.getValor() + (nodo.getEsRojo() ? "R" : "N"));        inorden(nodo.getDerecho());
+        if (nodo == null) return; // Caso base: subárbol vacío, no hay nada que recorrer
+        inorden(nodo.getIzquierdo()); // Primero recorremos el subárbol izquierdo
+        System.out.println(nodo.getValor() + (nodo.getEsRojo() ? "R" : "N")); // Imprimimos el valor y el color del nodo actual
+        inorden(nodo.getDerecho()); // Por último recorremos el subárbol derecho
     }
+
+    /**
+     * Imprime todos los valores del árbol en orden central con su color.
+     * Útil para depurar y verificar las propiedades del árbol Rojo-Negro.
+     */
     public void inordenRojoNegro(){
-        inorden(raiz);
+        inorden(raiz); // Llamamos al recorrido inorden desde la raíz
     }
 }

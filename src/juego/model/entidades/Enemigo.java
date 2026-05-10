@@ -1,7 +1,7 @@
 package juego.model.entidades;
 import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
-import juego.model.habitación.Celda;
-import juego.model.habitación.Habitacion;
+import juego.model.habitacion.Celda;
+import juego.model.habitacion.Habitacion;
 
 /**
  * Representa un enemigo del juego con sus estadísticas de combate y posición en la habitación.

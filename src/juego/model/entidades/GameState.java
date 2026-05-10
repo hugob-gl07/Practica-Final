@@ -2,8 +2,8 @@ package juego.model.entidades;
 
 import com.google.gson.Gson;
 import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
-import juego.model.habitación.Celda;
-import juego.model.habitación.TipoCelda;
+import juego.model.habitacion.Celda;
+import juego.model.habitacion.TipoCelda;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,7 +40,7 @@ public class GameState {
 
     public static Jugador reconstruirJugador(GameState estado) {
         Celda posicion= new Celda(estado.jugador.fila,estado.jugador.columna, TipoCelda.JUGADOR);
-        Jugador jugador= new Jugador(estado.jugador.nombre, posicion);
+        Jugador jugador= new Jugador(estado.jugador.nombre, posicion, estado.habitacionActual);
         jugador.setVidaMaxima(estado.jugador.vida);
         jugador.setNombre(estado.jugador.nombre);
         jugador.setAtaque(estado.jugador.ataque);

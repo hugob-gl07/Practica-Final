@@ -14,9 +14,14 @@ public class ElementoSE<T> {
         this.dato=dato;      // Almacenamos el dato
         this.siguiente=null; // El nodo no apunta a ningún siguiente
     }
+    /** Devuelve el dato almacenado en el nodo.*/
     public T getDato() { return dato; }
+
+    /** Devuelve el siguiente nodo.*/
     public ElementoSE<T> getSiguiente() { return siguiente; }
+
+    /** Modifica el puntero al siguiente nodo.*/
     public void setSiguiente(ElementoSE<T> siguiente) {
-        this.siguiente = siguiente;
+        this.siguiente = siguiente; // Apuntamos al nuevo nodo siguiente
     }
 }

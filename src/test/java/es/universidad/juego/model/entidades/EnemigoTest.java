@@ -1,10 +1,10 @@
-package es.universidad.juego.model.entidades;
+package test.java.es.universidad.juego.model.entidades;
 
 import juego.model.entidades.Enemigo;
 import juego.model.entidades.TipoEnemigo;
 import juego.model.entidades.Jugador;
-import es.universidad.juego.model.habitación.Celda;
-import es.universidad.juego.model.habitación.TipoCelda;
+import juego.model.habitacion.Celda;
+import juego.model.habitacion.TipoCelda;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -138,7 +138,7 @@ class EnemigoTest {
         enemigo.recibirDaño(150);
 
         assertTrue(enemigo.estaMuerto(),
-            "BUG: vidaActual = " + enemigo.vidaActual + " pero estaMuerto() = false");
+            "BUG: vidaActual = " + enemigo.getVidaActual() + " pero estaMuerto() = false");
     }
 
     @Test

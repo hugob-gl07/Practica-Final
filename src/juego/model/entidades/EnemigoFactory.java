@@ -1,9 +1,9 @@
 package juego.model.entidades;
 
 import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
-import juego.model.habitación.Celda;
-import juego.model.habitación.Habitacion;
-import juego.model.habitación.TipoCelda;
+import juego.model.habitacion.Celda;
+import juego.model.habitacion.Habitacion;
+import juego.model.habitacion.TipoCelda;
 
 import java.util.Random;
 
@@ -36,7 +36,7 @@ public class EnemigoFactory {
         Celda posicion = new Celda(fila, columna, TipoCelda.ENEMIGO);
         enemigo.setPosicion(posicion);
 
-// Asignar loot aleatorio y velocidad según tipo
+        // Asignar loot aleatorio y velocidad según tipo
         asignarLoot(enemigo, tipo);
         asignarVelocidad(enemigo, tipo);
         return enemigo;
@@ -66,99 +66,57 @@ public class EnemigoFactory {
         return enemigos;
     }
 
-/**
+    /**
      * Asigna botín aleatorio al enemigo según su tipo.
      * Cada tipo tiene una probabilidad distinta de dejar un objeto al morir.
-     * Los IDs de los objetos se generan de forma única: (idEnemigo * 10) + posicionArray
      * @param enemigo enemigo al que asignar el botín
      * @param tipo    tipo del enemigo que determina el objeto y la probabilidad
      */
     private static void asignarLoot(Enemigo enemigo, TipoEnemigo tipo) {
         Random random = new Random();
-        int baseId = enemigo.getId() * 10; // ID base único por enemigo
-        
+        int baseId= enemigo.getId()*10;
         switch (tipo) {
             case GOBLIN -> {
-                enemigo.loot[0] = new Objeto(baseId + 0, "Monedas", TipoObjeto.TESORO, Rareza.COMUN);
+                enemigo.loot[0] = new Objeto(baseId, "Monedas", TipoObjeto.TESORO, Rareza.COMUN);
                 if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar una poción pequeña
-                    enemigo.loot[1] = new Objeto(baseId + 1, "Poción Pequeña", TipoObjeto.POCIMA_VIDA, Rareza.COMUN);
+                    enemigo.loot[1] = new Objeto(baseId+1, "Poción Pequeña", TipoObjeto.POCIMA_VIDA, Rareza.COMUN);
                 } else if (random.nextDouble() < 0.2) { // 20% de probabilidad de soltar una Daga Robada
-                    enemigo.loot[2] = new Objeto(baseId + 2, "Daga Robada", TipoObjeto.ARMA, Rareza.POCO_COMUN);
+
+                    enemigo.loot[2] = new Objeto(baseId+2, "Daga Robada", TipoObjeto.ARMA, Rareza.POCO_COMUN);
                 }
             }
             case ORCO -> {
-                enemigo.loot[0] = new Objeto(baseId + 0, "Hacha Rota", TipoObjeto.ARMA, Rareza.POCO_COMUN);
+                enemigo.loot[0] = new Objeto(baseId, "Hacha Rota", TipoObjeto.ARMA, Rareza.POCO_COMUN);
                 if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar un Escudo Viejo
-                    enemigo.loot[1] = new Objeto(baseId + 1, "Escudo Viejo", TipoObjeto.ARMADURA, Rareza.COMUN);
+                    enemigo.loot[1] = new Objeto(baseId+1, "Escudo Viejo", TipoObjeto.ARMADURA, Rareza.COMUN);
                 } else if (random.nextDouble() < 0.2) { // 20% de probabilidad de soltar una Poción de Orco
-                    enemigo.loot[2] = new Objeto(baseId + 2, "Poción Orco", TipoObjeto.POCIMA_VIDA, Rareza.POCO_COMUN);
+                    enemigo.loot[2] = new Objeto(baseId+2, "Poción Orco", TipoObjeto.POCIMA_VIDA, Rareza.POCO_COMUN);
                 }
             }
             case ESQUELETO -> {
-                enemigo.loot[0] = new Objeto(baseId + 0, "Hueso", TipoObjeto.TESORO, Rareza.COMUN);
+                enemigo.loot[0] = new Objeto(baseId, "Hueso", TipoObjeto.TESORO, Rareza.COMUN);
                 if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar un hueso
-                    enemigo.loot[1] = new Objeto(baseId + 1, "Espada Oxidada", TipoObjeto.ARMA, Rareza.COMUN);
+                    enemigo.loot[1] = new Objeto(baseId+1, "Espada Oxidada", TipoObjeto.ARMA, Rareza.COMUN);
                 } else if (random.nextDouble() < 0.2) {// 20% de probabilidad de soltar una LLave Antigua
-                    enemigo.loot[2] = new Objeto(baseId + 2, "LLave Antigua", TipoObjeto.LLAVE, Rareza.POCO_COMUN);
+                    enemigo.loot[2] = new Objeto(baseId+2, "LLave Antigua", TipoObjeto.LLAVE, Rareza.POCO_COMUN);
                 }
             }
             case BANDOLERO -> {
-                enemigo.loot[0] = new Objeto(baseId + 0, "Pocion Robada", TipoObjeto.POCIMA_VIDA, Rareza.POCO_COMUN);
+                enemigo.loot[0] = new Objeto(baseId, "Pocion Robada", TipoObjeto.POCIMA_VIDA, Rareza.POCO_COMUN);
                 if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar una Bolsa Monedas
-                    enemigo.loot[1] = new Objeto(baseId + 1, "Bolsa Monedas", TipoObjeto.TESORO, Rareza.POCO_COMUN);
+                    enemigo.loot[1] = new Objeto(baseId+1, "Bolsa Monedas", TipoObjeto.TESORO, Rareza.POCO_COMUN);
                 }
                 if (random.nextDouble() < 0.2) { // 20% de probabilidad de soltar una Daga Envenenada
-                    enemigo.loot[2] = new Objeto(baseId + 2, "Daga Envenenada", TipoObjeto.ARMA, Rareza.RARO);
+                enemigo.loot[2] = new Objeto(baseId+2, "Daga Envenenada", TipoObjeto.ARMA, Rareza.RARO);
                 }
             }
             case DRAGON -> {
-                enemigo.loot[0] = new Objeto(baseId + 0, "Escama Dragón", TipoObjeto.TESORO, Rareza.LEGENDARIO);
+                enemigo.loot[0] = new Objeto(baseId, "Escama Dragón", TipoObjeto.TESORO, Rareza.LEGENDARIO);
                 if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar una Garra de Dragon
-                    enemigo.loot[1] = new Objeto(baseId + 1, "Garra Dragón", TipoObjeto.ARMA, Rareza.EPICO);
+                    enemigo.loot[1] = new Objeto(baseId+1, "Garra Dragón", TipoObjeto.ARMA, Rareza.EPICO);
                 }
                 else if (random.nextDouble() < 0.2) {  // 20% de probabilidad de soltar una Esencia de Dragon
-                    enemigo.loot[2] = new Objeto(baseId + 2, "Esencia Dragón", TipoObjeto.POCIMA_MANA, Rareza.LEGENDARIO);
-                }
-            }
-        }
-    }
-            }
-            case ORCO -> {
-                enemigo.loot[0] = new Objeto(2, "Hacha Rota", TipoObjeto.ARMA, Rareza.POCO_COMUN);
-                if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar un Escudo Viejo
-                    enemigo.loot[1] = new Objeto(2, "Escudo Viejo", TipoObjeto.ARMADURA, Rareza.COMUN);
-                } else if (random.nextDouble() < 0.2) { // 20% de probabilidad de soltar una Poción de Orco
-                    enemigo.loot[2] = new Objeto(2, "Poción Orco", TipoObjeto.POCIMA_VIDA, Rareza.POCO_COMUN);
-                }
-            }
-            case ESQUELETO -> {
-                enemigo.loot[0] = new Objeto(3, "Hueso", TipoObjeto.TESORO, Rareza.COMUN);
-                if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar un hueso
-                    enemigo.loot[1] = new Objeto(3, "Espada Oxidada", TipoObjeto.ARMA, Rareza.COMUN);
-                } else if (random.nextDouble() < 0.2) {// 20% de probabilidad de soltar una LLave Antigua
-                    enemigo.loot[2] = new Objeto(3, "LLave Antigua", TipoObjeto.LLAVE, Rareza.POCO_COMUN);
-                }
-            }
-case BANDOLERO -> {
-                enemigo.loot[0] = new Objeto(4, "Pocion Robada", TipoObjeto.POCIMA_VIDA, Rareza.POCO_COMUN);
-                if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar una Bolsa Monedas
-                    enemigo.loot[1] = new Objeto(4, "Bolsa Monedas", TipoObjeto.TESORO, Rareza.POCO_COMUN);
-                }
-                if (random.nextDouble() < 0.2) { // 20% de probabilidad de soltar una Daga Envenenada
-                    enemigo.loot[2] = new Objeto(4, "Daga Envenenada", TipoObjeto.ARMA, Rareza.RARO);
-                }
-            }
-                if (random.nextDouble() < 0.2) { // 20% de probabilidad de soltar una Daga Envenenada
-                    enemigo.loot[1] = new Objeto(4, "Daga Envenenada", TipoObjeto.ARMA, Rareza.RARO);
-                }
-            }
-            case DRAGON -> {
-                enemigo.loot[0] = new Objeto(5, "Escama Dragón", TipoObjeto.TESORO, Rareza.LEGENDARIO);
-                if (random.nextDouble() < 0.5) { // 50% de probabilidad de soltar una Garra de Dragon
-                    enemigo.loot[1] = new Objeto(5, "Garra Dragón", TipoObjeto.ARMA, Rareza.EPICO);
-                }
-                else if (random.nextDouble() < 0.2) {  // 20% de probabilidad de soltar una Esencia de Dragon
-                    enemigo.loot[2]= new Objeto(5,"Esencia Dragón", TipoObjeto.POCIMA_MANA, Rareza.LEGENDARIO);
+                    enemigo.loot[2]= new Objeto(baseId+2,"Esencia Dragón", TipoObjeto.POCIMA_MANA, Rareza.LEGENDARIO);
                 }
             }
         }
