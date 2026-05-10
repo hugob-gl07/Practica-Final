@@ -304,7 +304,7 @@ class JugadorTest {
         j.recibirDaño(30);
         assertTrue(j.estaSalud());
         
-        j.recibirDaño(100);
+
         assertFalse(j.estaSalud());
     }
 }

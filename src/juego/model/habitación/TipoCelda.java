@@ -1,4 +1,4 @@
-package juego.model.habitación;
+package EstructurasUtilizadas.Celda;
 
 /**
  * Enumerado que define los diferentes tipos de celdas en una habitación.
@@ -6,7 +6,6 @@ package juego.model.habitación;
  */
 public enum TipoCelda {
     VACIO,
-    SUELO,
     PARED,
     ENTRADA,
     SALIDA,
@@ -20,7 +19,6 @@ public enum TipoCelda {
     public boolean esTransitable() {
         switch(this) {
             case VACIO:
-            case SUELO:
             case ENTRADA:
             case SALIDA:
             case OBJETO:
@@ -41,7 +39,6 @@ public enum TipoCelda {
     public boolean puedeContenerObjetos() {
         switch(this) {
             case VACIO:
-            case SUELO:
             case ENTRADA:
             case SALIDA:
                 return true;
@@ -70,7 +67,6 @@ public enum TipoCelda {
     public char obtenerCaracterRepresentativo() {
         switch(this) {
             case VACIO: return '.';
-            case SUELO: return '.';
             case PARED: return '#';
             case ENTRADA: return 'E';
             case SALIDA: return 'S';
@@ -88,7 +84,6 @@ public enum TipoCelda {
     public String obtenerColorRepresentativo() {
         switch(this) {
             case VACIO: return "BLANCO";
-            case SUELO: return "BLANCO";
             case PARED: return "GRIS";
             case ENTRADA: return "VERDE";
             case SALIDA: return "ROJO";
@@ -105,7 +100,6 @@ public enum TipoCelda {
     public boolean puedeContenerEntidad() {
         switch(this) {
             case VACIO:
-            case SUELO:
             case ENTRADA:
             case SALIDA:
                 return true;
@@ -156,6 +150,6 @@ public enum TipoCelda {
      * @return array con los tipos transitables
      */
     public static TipoCelda[] obtenerTiposTransitables() {
-        return new TipoCelda[]{VACIO, SUELO, ENTRADA, SALIDA, OBJETO};
+        return new TipoCelda[]{VACIO, ENTRADA, SALIDA, OBJETO};
     }
 }
