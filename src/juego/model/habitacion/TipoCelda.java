@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/juego/model/habitación/TipoCelda.java
 package EstructurasUtilizadas.Celda;
+=======
+package juego.model.habitacion;
+>>>>>>> 74cfbdd (Sesion de hoy terminada):src/juego/model/habitacion/TipoCelda.java
 
 /**
  * Enumerado que define los diferentes tipos de celdas en una habitación.

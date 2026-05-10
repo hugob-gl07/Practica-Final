@@ -1,6 +1,10 @@
-package juego.model.helpers;
+package es.universidad.juego.model.helpers;
 
-import juego.model.entidades.*;
+import juego.model.entidades.Objeto;
+import juego.model.entidades.Enemigo;
+import juego.model.entidades.TipoObjeto;
+import juego.model.entidades.TipoEnemigo;
+import juego.model.entidades.Rareza;
 
 public class TestHelpers {
     

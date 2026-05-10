@@ -1,7 +1,8 @@
-package juego.model.entidades;
+package test.java.es.universidad.juego.model.entidades;
 
-import juego.model.habitación.Celda;
-import juego.model.habitación.TipoCelda;
+import juego.model.entidades.*;
+import juego.model.habitacion.Celda;
+import juego.model.habitacion.TipoCelda;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,24 +20,24 @@ class JugadorTest {
         celdaTransitable = new Celda(1, 0, TipoCelda.SUELO);
         celdaNoTransitable = new Celda(2, 0, TipoCelda.PARED);
         
-        jugador = new Jugador("Heroe", celdaInicial);
+        jugador = new Jugador("Heroe", celdaInicial, 1);
     }
     
     @Test
     void testConstructor_StatsIniciales() {
-        assertEquals("Heroe", jugador.nombre);
-        assertEquals(1, jugador.nivel);
-        assertEquals(0, jugador.experiencia);
-        assertEquals(100, jugador.vidaActual);
-        assertEquals(100, jugador.vidaMaxima);
-        assertEquals(10, jugador.ataque);
-        assertEquals(5, jugador.defensa);
-        assertEquals(50, jugador.mana);
+        assertEquals("Heroe", jugador.getNombre());
+        assertEquals(1, jugador.getNivel());
+        assertEquals(0, jugador.getExperiencia());
+        assertEquals(100, jugador.getVidaActual());
+        assertEquals(100, jugador.getVidaMaxima());
+        assertEquals(10, jugador.getAtaque());
+        assertEquals(5, jugador.getDefensa());
+        assertEquals(50, jugador.getMana());
     }
     
     @Test
     void testConstructor_IdAsignado() {
-        assertEquals(1, jugador.id);
+        assertEquals(1, jugador.getId());
     }
     
     @Test
@@ -51,46 +52,46 @@ class JugadorTest {
     
     @Test
     void testConstructor_PosicionInicial() {
-        assertEquals(celdaInicial, jugador.posicion);
+        assertEquals(celdaInicial, jugador.getPosicion());
     }
     
     @Test
     void testAddExperiencia_SinSubirNivel() {
         jugador.addExperiencia(50);
         
-        assertEquals(50, jugador.experiencia);
-        assertEquals(1, jugador.nivel);
+        assertEquals(50, jugador.getExperiencia());
+        assertEquals(1, jugador.getNivel());
     }
     
     @Test
     void testAddExperiencia_Exactamente100() {
         jugador.addExperiencia(100);
         
-        assertTrue(jugador.nivel >= 1);
+        assertTrue(jugador.getNivel() >= 1);
     }
     
     @Test
     void testAddExperiencia_MasDe100() {
         jugador.addExperiencia(150);
         
-        assertTrue(jugador.nivel >= 1);
+        assertTrue(jugador.getNivel() >= 1);
     }
     
     @Test
     void testSubirNivel_StatsAumentan() {
-        int nivelInicial = jugador.nivel;
-        int ataqueInicial = jugador.ataque;
-        int defensaInicial = jugador.defensa;
-        int vidaMaximaInicial = jugador.vidaMaxima;
-        int manaInicial = jugador.mana;
+        int nivelInicial = jugador.getNivel();
+        int ataqueInicial = jugador.getAtaque();
+        int defensaInicial = jugador.getDefensa();
+        int vidaMaximaInicial = jugador.getVidaMaxima();
+        int manaInicial = jugador.getMana();
         
         jugador.addExperiencia(100);
         
-        if (jugador.nivel > nivelInicial) {
-            assertTrue(jugador.ataque >= ataqueInicial);
-            assertTrue(jugador.defensa >= defensaInicial);
-            assertTrue(jugador.vidaMaxima >= vidaMaximaInicial);
-            assertTrue(jugador.mana >= manaInicial);
+        if (jugador.getNivel() > nivelInicial) {
+            assertTrue(jugador.getAtaque() >= ataqueInicial);
+            assertTrue(jugador.getDefensa() >= defensaInicial);
+            assertTrue(jugador.getVidaMaxima() >= vidaMaximaInicial);
+            assertTrue(jugador.getMana() >= manaInicial);
         }
     }
     
@@ -98,7 +99,7 @@ class JugadorTest {
     void testSubirNivel_ExperienciaSeReinicia() {
         jugador.addExperiencia(100);
         
-        assertTrue(jugador.experiencia < 100);
+        assertTrue(jugador.getExperiencia() < 100);
     }
     
     @Test
@@ -111,22 +112,22 @@ class JugadorTest {
     
     @Test
     void testRecibirDaño_Normal() {
-        int vidaAntes = jugador.vidaActual;
+        int vidaAntes = jugador.getVidaActual();
         
         jugador.recibirDaño(30);
         
-        assertTrue(jugador.vidaActual < vidaAntes);
-        assertTrue(jugador.vidaActual >= 0);
+        assertTrue(jugador.getVidaActual() < vidaAntes);
+        assertTrue(jugador.getVidaActual() >= 0);
     }
     
     @Test
     void testRecibirDaño_DefensaReduceDaño() {
         int ataqueEnemigo = 20;
-        int dañoEsperadoMax = ataqueEnemigo - jugador.defensa;
+        int dañoEsperadoMax = ataqueEnemigo - jugador.getDefensa();
         
-        int vidaAntes = jugador.vidaActual;
+        int vidaAntes = jugador.getVidaActual();
         jugador.recibirDaño(ataqueEnemigo);
-        int dañoRecibido = vidaAntes - jugador.vidaActual;
+        int dañoRecibido = vidaAntes - jugador.getVidaActual();
         
         assertTrue(dañoRecibido <= dañoEsperadoMax + 1);
     }
@@ -135,28 +136,28 @@ class JugadorTest {
     void testRecibirDaño_VidaNoQuedaNegativa() {
         jugador.recibirDaño(200);
         
-        assertTrue(jugador.vidaActual >= 0);
+        assertTrue(jugador.getVidaActual() >= 0);
     }
     
     @Test
     void testRecibirDaño_DañoMenorQueDefensa() {
-        int vidaAntes = jugador.vidaActual;
+        int vidaAntes = jugador.getVidaActual();
         
         jugador.recibirDaño(3);
         
-        int dañoRecibido = vidaAntes - jugador.vidaActual;
+        int dañoRecibido = vidaAntes - jugador.getVidaActual();
         assertTrue(dañoRecibido <= 1);
     }
     
     @Test
     void testAtacar_EnemigoRecibeDaño() {
         Enemigo enemigo = new Enemigo(1, "Orco", TipoEnemigo.ORCO, 100, 10, 0);
-        int vidaAntes = enemigo.vidaActual;
+        int vidaAntes = enemigo.getVidaActual();
         
         int daño = jugador.atacar(enemigo);
         
-        assertEquals(jugador.ataque, daño);
-        assertTrue(enemigo.vidaActual < vidaAntes);
+        assertEquals(jugador.getAtaque(), daño);
+        assertTrue(enemigo.getVidaActual() < vidaAntes);
     }
     
     @Test
@@ -181,16 +182,16 @@ class JugadorTest {
     void testMover_CeldaTransitable() {
         jugador.mover(celdaTransitable);
         
-        assertEquals(celdaTransitable, jugador.posicion);
+        assertEquals(celdaTransitable, jugador.getPosicion());
     }
     
     @Test
     void testMover_CeldaNoTransitable_PosicionNoCambia() {
-        Celda posicionAntes = jugador.posicion;
+        Celda posicionAntes = jugador.getPosicion();
         
         jugador.mover(celdaNoTransitable);
         
-        assertEquals(posicionAntes, jugador.posicion);
+        assertEquals(posicionAntes, jugador.getPosicion());
     }
     
     @Test
@@ -202,11 +203,11 @@ class JugadorTest {
     
     @Test
     void testMover_MismaCelda() {
-        Celda posicionAntes = jugador.posicion;
+        Celda posicionAntes = jugador.getPosicion();
         
         jugador.mover(celdaInicial);
         
-        assertEquals(posicionAntes, jugador.posicion);
+        assertEquals(posicionAntes, jugador.getPosicion());
     }
     
     @Test
@@ -214,36 +215,36 @@ class JugadorTest {
         Objeto pocima = new Objeto(1, "Pocion", TipoObjeto.POCIMA_VIDA, Rareza.COMUN);
         pocima.addEstadistica("vida", 30);
         
-        int vidaAntes = jugador.vidaActual;
+        int vidaAntes = jugador.getVidaActual();
         jugador.getInventario().addObjeto(pocima);
         
         if (jugador.getInventario().getTamaño() > 0) {
             int tamañoAntes = jugador.getInventario().getTamaño();
             jugador.usarObjeto(1);
             
-            assertTrue(jugador.vidaActual > vidaAntes || 
+            assertTrue(jugador.getVidaActual() > vidaAntes ||
                        jugador.getInventario().getTamaño() < tamañoAntes);
         }
     }
     
     @Test
     void testUsarObjeto_NoExiste_SinCambios() {
-        int vidaAntes = jugador.vidaActual;
-        int manaAntes = jugador.mana;
+        int vidaAntes = jugador.getVidaActual();
+        int manaAntes = jugador.getMana();
         
         jugador.usarObjeto(999);
         
-        assertEquals(vidaAntes, jugador.vidaActual);
-        assertEquals(manaAntes, jugador.mana);
+        assertEquals(vidaAntes, jugador.getVidaActual());
+        assertEquals(manaAntes, jugador.getMana());
     }
     
     @Test
     void testUsarObjeto_InventarioVacio() {
-        int vidaAntes = jugador.vidaActual;
+        int vidaAntes = jugador.getVidaActual();
         
         jugador.usarObjeto(1);
         
-        assertEquals(vidaAntes, jugador.vidaActual);
+        assertEquals(vidaAntes, jugador.getVidaActual());
     }
     
     @Test
@@ -275,7 +276,7 @@ class JugadorTest {
     
     @Test
     void testEstaSalud_False() {
-        jugador.vidaActual = 0;
+        jugador.setVidaActual(0);
         
         assertFalse(jugador.estaSalud());
     }
@@ -296,7 +297,7 @@ class JugadorTest {
     
     @Test
     void testEstaSalud_MultipleDanios() {
-        Jugador j = new Jugador("Test", celdaInicial);
+        Jugador j = new Jugador("Test", celdaInicial,1);
         
         j.recibirDaño(30);
         assertTrue(j.estaSalud());
