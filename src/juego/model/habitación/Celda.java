@@ -5,7 +5,7 @@ import java.util.Objects;
  * Representa una celda individual en la matriz de la habitación
  * Cada celda tiene cordenadas x,y y un tipo
  */
-public class Celda {
+public class Celda implements Comparable<Celda> {
     private int x, y;
     private TipoCelda tipo;
 
@@ -159,5 +159,13 @@ public class Celda {
             }
         setTipo(nuevoTipo);
         return true;
+    }
+
+    @Override
+    public int compareTo(Celda o) {
+        if(this.x != o.x) {
+            return Integer.compare(this.x, o.x);
+        }
+        return Integer.compare(this.y, o.y);
     }
 }

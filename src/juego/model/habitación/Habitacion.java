@@ -1,4 +1,7 @@
 package juego.model.habitación;
+
+import juego.model.EstructurasUtilizadas.LSE.ListaSimplementeEnlazada;
+
 /**
  * Representa una habitación individual del juego con sus propiedades y matriz interna.
  * Cada habitación tiene un identificador único y conexiones con otras habitaciones.
@@ -59,6 +62,10 @@ public class Habitacion implements Comparable<Habitacion> {
     }
     public int getColumna(){
         return matriz.getColumnas();
+    }
+
+    public ListaSimplementeEnlazada<Celda> obtenerCasillasAlcanzables(int fila, int columna, int rango) {
+        return matriz.obtenerCasillasAlcanzable(fila, columna, rango);
     }
 
     public String toString() {

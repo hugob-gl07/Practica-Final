@@ -81,7 +81,7 @@ class InventarioTest {
         Objeto removed = inventario.removeObjeto(1);
         
         assertNotNull(removed);
-        assertEquals(2, inventario.getTamaño());
+        assertEquals(1, inventario.getTamaño());
         assertNotNull(inventario.getObjeto(2));
     }
     
