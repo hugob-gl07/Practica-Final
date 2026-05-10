@@ -1,4 +1,4 @@
-package juego.model.entidades;
+package es.universidad.juego.model.entidades;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

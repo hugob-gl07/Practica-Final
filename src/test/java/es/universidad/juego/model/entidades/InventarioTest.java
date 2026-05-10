@@ -1,4 +1,4 @@
-package juego.model.entidades;
+package es.universidad.juego.model.entidades;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

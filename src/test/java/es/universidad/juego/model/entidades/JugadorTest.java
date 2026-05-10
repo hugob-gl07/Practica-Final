@@ -1,7 +1,7 @@
-package juego.model.entidades;
+package es.universidad.juego.model.entidades;
 
-import juego.model.habitación.Celda;
-import juego.model.habitación.TipoCelda;
+import es.universidad.juego.model.habitación.Celda;
+import es.universidad.juego.model.habitación.TipoCelda;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

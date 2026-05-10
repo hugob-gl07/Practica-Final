@@ -1,6 +1,6 @@
-package juego.model.helpers;
+package es.universidad.juego.model.helpers;
 
-import juego.model.entidades.*;
+import es.universidad.juego.model.entidades.*;
 
 public class TestHelpers {
     
