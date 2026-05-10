@@ -1,0 +1,120 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "model": "copilot/claude-haiku-4-5-20251001",
+
+  "agent": {
+
+    "build": {
+      "description": "Agente principal de desarrollo. Escribe, edita y ejecuta código con acceso total.",
+      "mode": "primary",
+      "model": "copilot/claude-haiku-4-5-20251001",
+      "temperature": 0.3,
+      "color": "#4CAF50",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "read": "allow"
+      }
+    },
+
+    "plan": {
+      "description": "Agente de planificación y análisis. Razona sobre el código sin modificarlo.",
+      "mode": "primary",
+      "model": "copilot/gemini-2.0-flash",
+      "temperature": 0.1,
+      "color": "#2196F3",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "read": "allow"
+      }
+    },
+
+    "revisor": {
+      "description": "Revisa el código en busca de errores, bugs y malas prácticas. Úsalo con @revisor.",
+      "mode": "subagent",
+      "model": "copilot/claude-haiku-4-5-20251001",
+      "temperature": 0.1,
+      "color": "#FF9800",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "read": "allow"
+      }
+    },
+
+    "explorador": {
+      "description": "Explora y entiende la estructura del proyecto sin modificar nada. Úsalo con @explorador.",
+      "mode": "subagent",
+      "model": "copilot/gemini-2.0-flash",
+      "temperature": 0.1,
+      "color": "#9C27B0",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    },
+
+    "debug": {
+      "description": "Especialista en depuración. Analiza errores y propone soluciones. Úsalo con @debug.",
+      "mode": "subagent",
+      "model": "copilot/claude-haiku-4-5-20251001",
+      "temperature": 0.2,
+      "color": "#F44336",
+      "permission": {
+        "edit": "ask",
+        "bash": {
+          "*": "ask",
+          "grep *": "allow",
+          "cat *": "allow"
+        },
+        "read": "allow"
+      }
+    },
+
+    "docs": {
+      "description": "Escribe y mejora documentación, comentarios y README. Úsalo con @docs.",
+      "mode": "subagent",
+      "model": "copilot/gemini-2.0-flash",
+      "temperature": 0.5,
+      "color": "#00BCD4",
+      "permission": {
+        "edit": "ask",
+        "bash": "deny",
+        "read": "allow"
+      }
+    },
+
+    "structures-guard": {
+      "description": "Detecta usos de java.util.* prohibidos en estructuras evaluadas. Úsalo con @structures-guard.",
+      "mode": "subagent",
+      "model": "copilot/claude-haiku-4-5-20251001",
+      "temperature": 0.1,
+      "color": "#E91E63",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "read": "allow"
+      }
+    },
+
+    "graph-algo": {
+      "description": "Implementa BFS, Dijkstra y algoritmos de grafo sin java.util.*. Úsalo con @graph-algo.",
+      "mode": "subagent",
+      "model": "copilot/claude-haiku-4-5-20251001",
+      "temperature": 0.2,
+      "color": "#FF5722",
+      "permission": {
+        "edit": "allow",
+        "bash": "deny",
+        "read": "allow"
+      }
+    }
+
+  }
+}
