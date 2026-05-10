@@ -19,7 +19,7 @@ class JugadorTest {
         celdaTransitable = new Celda(1, 0, TipoCelda.SUELO);
         celdaNoTransitable = new Celda(2, 0, TipoCelda.PARED);
         
-        jugador = new Jugador("Heroe", celdaInicial);
+        jugador = new Jugador("Heroe", celdaInicial, 1);
     }
     
     @Test
@@ -296,7 +296,7 @@ class JugadorTest {
     
     @Test
     void testEstaSalud_MultipleDanios() {
-        Jugador j = new Jugador("Test", celdaInicial);
+        Jugador j = new Jugador("Test", celdaInicial, 1);
         
         j.recibirDaño(30);
         assertTrue(j.estaSalud());
