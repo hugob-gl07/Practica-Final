@@ -1,5 +1,9 @@
 package es.universidad.juego.model.entidades;
 
+import juego.model.entidades.Inventario;
+import juego.model.entidades.Objeto;
+import juego.model.entidades.TipoObjeto;
+import juego.model.entidades.Rareza;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

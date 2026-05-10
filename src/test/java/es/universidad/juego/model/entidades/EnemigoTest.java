@@ -1,5 +1,7 @@
 package es.universidad.juego.model.entidades;
 
+import juego.model.entidades.Enemigo;
+import juego.model.entidades.TipoEnemigo;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

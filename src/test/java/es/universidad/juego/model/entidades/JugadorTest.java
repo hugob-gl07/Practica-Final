@@ -2,6 +2,11 @@ package es.universidad.juego.model.entidades;
 
 import es.universidad.juego.model.habitación.Celda;
 import es.universidad.juego.model.habitación.TipoCelda;
+import juego.model.entidades.Enemigo;
+import juego.model.entidades.Objeto;
+import juego.model.entidades.TipoEnemigo;
+import juego.model.entidades.TipoObjeto;
+import juego.model.entidades.Rareza;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
