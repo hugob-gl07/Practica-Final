@@ -1,0 +1,63 @@
+@startuml
+class ColaPrioridadMax <T extends Comparable <T>>{
+    + enqueue(dato:T):void
+    + dequeue():T
+    + peekMax():T
+    + isEmpty():boolean
+    + size():int
+    + clear():void
+    + peekMin():T
+    + dequeueMin():T
+    + toString():String
+    + contains(dato:T):boolean
+    + replace(datoviejo:T,datonuevo:T)
+}
+class ColaPrioridadMin <T extends Comparable <T>>{
+    + enqueue(dato:T):void
+    + dequeue():T
+    + peekMax():T
+    + isEmpty():boolean
+    + size():int
+    + clear():void
+    + peekMin():T
+    + toString():String
+    + contains(dato:T):boolean
+    + replace(datoviejo:T,datonuevo:T)
+}
+note as ColaPrioridad
+**Métodos compartidos:**
+isEmpty: Devuelve true si está vacía, false si no
+size: Devuelve el número de elementos
+clear: Vacía la cola
+contains: Comprueba si existe un elemento
+replace: Reemplaza un elemento manteniendo el orden
+toString: Representación en texto
+peekMax: Devuelve el mayor sin eliminarlo
+peekMin: Devuelve el menor sin eliminarlo
+end note
+
+note left of ColaPrioridadMax::enqueue
+**INSERTA MANTENIENDO ORDEN DESCENDENTE**
+end note
+
+note left of ColaPrioridadMax::dequeue
+**ELIMINA Y DEVUELVE EL MAYOR**
+end note
+
+note left of ColaPrioridadMax::dequeueMin
+**ELIMINA Y DEVUELVE EL MENOR**
+end note
+
+note right of ColaPrioridadMin::enqueue
+**INSERTA MANTENIENDO ORDEN ASCENDENTE**
+end note
+
+note right of ColaPrioridadMin::dequeue
+**ELIMINA Y DEVUELVE EL MENOR**
+end note
+
+note right of ColaPrioridadMin::dequeueMax
+**ELIMINA Y DEVUELVE EL MAYOR**
+end note
+
+@enduml

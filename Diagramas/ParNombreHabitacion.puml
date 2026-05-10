@@ -1,0 +1,17 @@
+@startuml ParNombreHabitacion
+class ParNombreHabitacion {
+  - nombreNodo: String
+  - habitacion: Habitacion
+  --
+  + ParNombreHabitacion(nombre: String, hab: Habitacion)
+  + getNombreNodo(): String
+  + setNombreNodo(nombre: String): void
+  + getHabitacion(): Habitacion
+  + setHabitacion(hab: Habitacion): void
+  + compareTo(o: ParNombreHabitacion): int
+  + equals(obj: Object): boolean
+  + hashCode(): int
+  + toString(): String
+}
+
+@enduml

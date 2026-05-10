@@ -1,0 +1,87 @@
+@startuml Grafos
+
+skinparam classAttributeIconSize 0
+
+class Nodo {
+    - int id
+    - String nombre
+    --
+    + Nodo(int id, String nombre)
+    + getId(): int
+    + setId(int id): void
+    + getNombre(): String
+    + setNombre(String nombre): void
+    + compareTo(Nodo otro): int
+}
+
+class Arista {
+    - Nodo origen
+    - Nodo destino
+    - String etiqueta
+    - int peso
+    --
+    + Arista(Nodo origen, String etiqueta, Nodo destino)
+    + getOrigen(): Nodo
+    + setOrigen(Nodo origen): void
+    + getDestino(): Nodo
+    + setDestino(Nodo destino): void
+    + getEtiqueta(): String
+    + setEtiqueta(String etiqueta): void
+    + getPeso(): int
+    + setPeso(int peso): void
+    + compareTo(Arista otra): int
+}
+
+class EntradaAdyacencia {
+    - Nodo nodo
+    - ListaSimplementeEnlazada<Arista> aristas
+    --
+    + EntradaAdyacencia(Nodo nodo)
+    + getNodo(): Nodo
+    + setNodo(Nodo nodo): void
+    + getAristas(): ListaSimplementeEnlazada<Arista>
+    + setAristas(ListaSimplementeEnlazada aristas): void
+    + compareTo(EntradaAdyacencia o): int
+}
+
+class EntradaDistancia {
+    - String nodo
+    - int distancia
+    - Arista padre
+    --
+    + EntradaDistancia(String nodo, int distancia)
+    + getNodo(): String
+    + setNodo(String nodo): void
+    + getDistancia(): int
+    + setDistancia(int distancia): void
+    + getPadre(): Arista
+    + setPadre(Arista padre): void
+    + compareTo(EntradaDistancia otro): int
+}
+
+class Grafo {
+    - ListaSimplementeEnlazada<EntradaAdyacencia> entradas
+    - int contador
+    --
+    + Grafo(int contador)
+    + EntradaAdyacencia buscarEntrada(String nombre)
+    + agregarNodo(String nombre): void
+    + agregarArista(String origen, String destino, String etiqueta): void
+    + caminoMinimo(String origen, String destino): ListaSimplementeEnlazada<Nodo>
+    + dijkstra(String origen, String destino): ListaSimplementeEnlazada<Nodo>
+    + esDisjunto(): boolean
+    + getValor(String sujeto, String relacion): String
+    + buscarPorRelacionYValor(String relacion, String valor): ListaSimplementeEnlazada<String>
+    + listarValoresPorRelacion(String relacion): ListaSimplementeEnlazada<String>
+    + getTiposdeNodos(): ListaSimplementeEnlazada<String>
+    + cargarDesdeJson(String ruta): void
+}
+
+Grafo              o-->  EntradaAdyacencia : lista de adyacencia
+Grafo              ..>   EntradaDistancia  : usa en Dijkstra
+EntradaAdyacencia  o-->  Nodo              : contiene
+EntradaAdyacencia  o-->  Arista            : lista de aristas
+Arista             o-->  Nodo              : origen / destino
+EntradaDistancia   o-->  Arista            : arista padre
+
+@enduml

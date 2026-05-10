@@ -1,0 +1,53 @@
+@startuml RelacionesGlobales
+enum TipoCelda {
+  VACIO
+  PARED
+  ENTRADA
+  SALIDA
+  OBJETO
+  ENEMIGO
+  JUGADOR
+}
+
+class Celda {
+  - x: int
+  - y: int
+  - tipo: TipoCelda
+}
+
+class MatrizHabitacion {
+  - matriz: Celda[][]
+  - filas: int
+  - columnas: int
+}
+
+class Habitacion {
+  - id: int
+  - nombre: String
+  - matriz: MatrizHabitacion
+}
+
+class ParIdNombre {
+  - idHabitacion: int
+  - nombreNodo: String
+}
+
+class ParNombreHabitacion {
+  - nombreNodo: String
+  - habitacion: Habitacion
+}
+
+class GrafoHabitacion {
+  - grafo: Grafo
+  - idnombre: ListaSimplementeEnlazada<ParIdNombre>
+  - habitaciones: ListaSimplementeEnlazada<ParNombreHabitacion>
+}
+
+TipoCelda <-- Celda : usa
+Celda "*" --o "1" MatrizHabitacion : contiene
+MatrizHabitacion "1" --o "1" Habitacion : contiene
+Habitacion "1" --* "*" ParNombreHabitacion : referencia
+ParNombreHabitacion "*" --o "1" GrafoHabitacion : contiene
+ParIdNombre "*" --o "1" GrafoHabitacion : contiene
+Grafo "1" --o "1" GrafoHabitacion : usa
+@enduml
