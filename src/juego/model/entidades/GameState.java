@@ -41,8 +41,8 @@ public class GameState {
     public static Jugador reconstruirJugador(GameState estado) {
         Celda posicion= new Celda(estado.jugador.fila,estado.jugador.columna, TipoCelda.JUGADOR);
         Jugador jugador= new Jugador(estado.jugador.nombre, posicion, estado.habitacionActual);
+        jugador.setVidaActual(estado.jugador.vida);
         jugador.setVidaMaxima(estado.jugador.vida);
-        jugador.setNombre(estado.jugador.nombre);
         jugador.setAtaque(estado.jugador.ataque);
         jugador.setDefensa(estado.jugador.defensa);
         jugador.setMana(estado.jugador.mana);
@@ -97,7 +97,7 @@ public class GameState {
         int tamañoInventario = jugador.getInventario().getTamaño();
         jugadorDTO.inventario = new ObjetoDTO[tamañoInventario];
         for (int i = 0; i < tamañoInventario; i++) {
-            Objeto obj = jugador.getInventario().getObjeto(i + 1);
+            Objeto obj = jugador.getInventario().getObjetoPorIndice(i);
             if (obj != null) {
                 ObjetoDTO objDTO = new ObjetoDTO();
                 objDTO.id = obj.getId();

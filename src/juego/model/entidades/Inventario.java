@@ -95,12 +95,24 @@ public class Inventario {
      * @return cadena con la lista de objetos
      */
     public String listaObjetos(){
-        String lista = "";
+        StringBuilder lista = new StringBuilder();
         for(int i=0;i<objetos.getSize();i++){
-            lista += objetos.getAt(i).toString(); // Añadimos la representación de cada objeto
-            lista += "\n";
+            lista.append(objetos.getAt(i).toString());
+            lista.append("\n");
         }
-        return lista;
+        return lista.toString();
+    }
+
+    /**
+     * Devuelve el objeto en la posición indicada de la lista sin eliminarlo.
+     * @param indice posición del objeto en el inventario
+     * @return el objeto en esa posición, o null si el índice está fuera de rango
+     */
+    public Objeto getObjetoPorIndice(int indice) {
+        if(indice < 0 || indice >= objetos.getSize()){
+            return null;
+        }
+        return objetos.getAt(indice);
     }
 
     /**

@@ -56,6 +56,9 @@ public class Enemigo implements Comparable<Enemigo> {
      * @return daño base del ataque
      */
     public int atacar(Jugador jugador){
+        if(jugador == null){
+            throw new IllegalArgumentException("El jugador no puede ser nulo");
+        }
         double aleatorio = Math.random();  // Número aleatorio entre 0 y 1
         int dañoReal = Math.max(0, (int)(this.ataque * (aleatorio * 2) - jugador.getDefensa()));
         jugador.recibirDaño(dañoReal);
@@ -98,6 +101,12 @@ public class Enemigo implements Comparable<Enemigo> {
      * @param habitacion habitación donde se calcula el movimiento
      */
     public void moverHacia(Jugador jugador, Habitacion habitacion){
+        if(jugador == null || habitacion == null){
+            throw new IllegalArgumentException("El jugador y la habitación no pueden ser nulos");
+        }
+        if(posicion == null){
+            throw new IllegalArgumentException("El enemigo no tiene posición asignada");
+        }
         Celda posJugador=jugador.getPosicion();
         int menordistancia= Integer.MAX_VALUE;
         Celda celdamasCercana= null;
@@ -265,10 +274,6 @@ public class Enemigo implements Comparable<Enemigo> {
         return vidamaxima;
     }
 
-    public void getVelocidad(int velocidad){
-        this.velocidad = velocidad;
-    }
-
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
@@ -281,6 +286,9 @@ public class Enemigo implements Comparable<Enemigo> {
      */
     @Override
     public int compareTo(Enemigo enemigo) {
-            return Integer.compare(this.ataque, enemigo.getAtaque()); // Ordenamos por ataque ascendente
+        if(enemigo == null){
+            throw new IllegalArgumentException("El enemigo a comparar no puede ser nulo");
+        }
+        return Integer.compare(this.ataque, enemigo.getAtaque());
     }
 }

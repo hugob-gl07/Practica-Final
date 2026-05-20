@@ -58,6 +58,9 @@ class ParIdNombre implements Comparable<ParIdNombre> {
      */
     @Override
     public int compareTo(ParIdNombre o) {
-        return Integer.compare(this.idHabitacion, o.idHabitacion); // Ordenamos por id ascendente
+        if(o == null){
+            throw new IllegalArgumentException("El par a comparar no puede ser nulo");
+        }
+        return Integer.compare(this.idHabitacion, o.idHabitacion);
     }
 }

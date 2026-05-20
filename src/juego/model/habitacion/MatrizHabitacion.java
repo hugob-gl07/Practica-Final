@@ -20,9 +20,12 @@ public class MatrizHabitacion {
      * @param columnas número de columnas de la cuadrícula
      */
     public MatrizHabitacion(int filas, int columnas) {
+        if(filas <= 0 || columnas <= 0){
+            throw new IllegalArgumentException("Las dimensiones de la matriz deben ser mayores que 0");
+        }
         this.filas = filas;
         this.columnas = columnas;
-        matriz = new Celda[filas][columnas]; // Creamos el array bidimensional
+        matriz = new Celda[filas][columnas];
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 matriz[i][j] = new Celda(i, j, TipoCelda.VACIO); // Inicializamos cada celda como vacía
@@ -55,7 +58,7 @@ public class MatrizHabitacion {
      */
     public Celda getCelda(int fila, int columna) {
         if((fila< 0 ||fila>= filas) || (columna<0 || columna>= columnas)) {
-            throw new IllegalArgumentException(); // Coordenadas fuera de la matriz
+            throw new IllegalArgumentException("Coordenadas (" + fila + "," + columna + ") fuera del rango de la matriz");
         }
         return matriz[fila][columna];
     }
@@ -69,7 +72,7 @@ public class MatrizHabitacion {
      */
     public void setCelda(int fila, int columna, Celda celda) {
         if((fila< 0 ||fila>= filas) || (columna<0 || columna>= columnas)) {
-            throw new IllegalArgumentException(); // Coordenadas fuera de la matriz
+            throw new IllegalArgumentException("Coordenadas (" + fila + "," + columna + ") fuera del rango de la matriz");
         }
         matriz[fila][columna] = celda; // Sustituimos la celda en esa posición
     }
