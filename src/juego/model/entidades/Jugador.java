@@ -73,7 +73,7 @@ public class Jugador {
         ataque+=5;           // Aumentamos el daño base
         defensa+=3;          // Aumentamos la reducción de daño
         mana+=10;            // Aumentamos el maná disponible
-        historialAcciones.insertar("Subistes al nivel"+ nivel); // Registramos el evento
+        historialAcciones.insertar("Subiste al nivel " + nivel);
     }
 
     /**
@@ -98,6 +98,9 @@ public class Jugador {
      * @return daño infligido al enemigo
      */
     public int atacar(Enemigo enemigo){
+        if(enemigo == null){
+            throw new IllegalArgumentException("El enemigo no puede ser nulo");
+        }
         double aleatorio = Math.random();  // Número aleatorio entre 0 y 1
         int dañoReal = Math.max(0, (int)(this.ataque * (aleatorio * 2) - enemigo.obtenerDefensa()));
         enemigo.recibirDaño(dañoReal);
@@ -111,10 +114,13 @@ public class Jugador {
      * @param nuevaCelda celda de destino del movimiento
      */
     public void mover(Celda nuevaCelda){
-        if(nuevaCelda.esTransitable()){
-            posicion=nuevaCelda; // Solo nos movemos si la celda es transitable
+        if(nuevaCelda==null){
+            throw new IllegalArgumentException("La celda de destino no puede ser nula");
         }
-        historialAcciones.insertar("Moviste a "+ nuevaCelda.toString()); // Registramos el movimiento
+        if(nuevaCelda.esTransitable()){
+            posicion=nuevaCelda;
+            historialAcciones.insertar("Moviste a "+ nuevaCelda.toString());
+        }
     }
 
     /**
@@ -125,7 +131,7 @@ public class Jugador {
     public void usarObjeto(int idObjeto){
         Objeto objeto= inventario.getObjeto(idObjeto);
         if(objeto==null){
-            return; // El objeto no existe en el inventario, no hacemos nada
+            throw new IllegalArgumentException("El objeto con ID " + idObjeto + " no existe en el inventario");
         }
         switch(objeto.getTipo()){
             case POCIMA_VIDA -> vidaActual+=objeto.getValorEstadisticas("vida"); // Restauramos vida
@@ -136,6 +142,9 @@ public class Jugador {
     }
 
     public boolean cambiardeHabitacion(GrafoHabitacion grafo, int indiceDestino){
+        if(grafo == null){
+            throw new IllegalArgumentException("El grafo de habitaciones no puede ser nulo");
+        }
         if(posicion.getTipo()!= TipoCelda.SALIDA){
             return false;
         }
@@ -149,6 +158,9 @@ public class Jugador {
         }
         Habitacion destino= conexiones.getAt(indiceDestino);
         Celda entrada= destino.buscarcelda(TipoCelda.ENTRADA);
+        if(entrada==null){
+            return false;
+        }
         posicion=entrada;
         habitacionActual=destino.getId();
         return true;

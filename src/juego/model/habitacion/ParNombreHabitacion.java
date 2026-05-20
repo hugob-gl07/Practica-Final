@@ -58,6 +58,9 @@ class ParNombreHabitacion implements Comparable<ParNombreHabitacion> {
      */
     @Override
     public int compareTo(ParNombreHabitacion o) {
-        return this.nombreNodo.compareTo(o.nombreNodo); // Delegamos la comparación en el orden natural de String
+        if(o == null){
+            throw new IllegalArgumentException("El par a comparar no puede ser nulo");
+        }
+        return this.nombreNodo.compareTo(o.nombreNodo);
     }
 }

@@ -108,10 +108,10 @@ public class Celda implements Comparable<Celda> {
      * @return true si ambas celdas tienen las mismas coordenadas, false en caso contrario
      */
     public boolean mismaPosicion(Celda otra) {
-        if (this.x == otra.x && this.y == otra.y) {
-            return true; // Mismas coordenadas: misma posición en la matriz
+        if(otra == null){
+            throw new IllegalArgumentException("La celda a comparar no puede ser nula");
         }
-        return false;
+        return this.x == otra.x && this.y == otra.y;
     }
 
     /**
@@ -205,9 +205,12 @@ public class Celda implements Comparable<Celda> {
      */
     @Override
     public int compareTo(Celda o) {
-        if(this.x != o.x) {
-            return Integer.compare(this.x, o.x); // Primero comparamos por fila
+        if(o == null){
+            throw new IllegalArgumentException("La celda a comparar no puede ser nula");
         }
-        return Integer.compare(this.y, o.y); // Si la fila es igual comparamos por columna
+        if(this.x != o.x) {
+            return Integer.compare(this.x, o.x);
+        }
+        return Integer.compare(this.y, o.y);
     }
 }

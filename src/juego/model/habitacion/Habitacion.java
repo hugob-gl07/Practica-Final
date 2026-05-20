@@ -21,9 +21,15 @@ public class Habitacion implements Comparable<Habitacion> {
      * @param filas   número de filas de la cuadrícula interna
      */
     public Habitacion(int id, String nombre, int columnas, int filas) {
+        if(id < 0){
+            throw new IllegalArgumentException("El id de la habitación no puede ser negativo");
+        }
+        if(nombre == null){
+            throw new IllegalArgumentException("El nombre de la habitación no puede ser nulo");
+        }
         this.id = id;
         this.nombre = nombre;
-        this.matriz = new MatrizHabitacion(columnas, filas); // Creamos la cuadrícula con las dimensiones dadas
+        this.matriz = new MatrizHabitacion(filas, columnas);
     }
 
     /**
@@ -75,7 +81,10 @@ public class Habitacion implements Comparable<Habitacion> {
      * @param celda   nueva celda a colocar en esa posición
      */
     public void setCelda(int fila, int columna, Celda celda) {
-        matriz.setCelda(fila, columna, celda); // Delegamos en la matriz
+        if(celda == null){
+            throw new IllegalArgumentException("La celda no puede ser nula");
+        }
+        matriz.setCelda(fila, columna, celda);
     }
 
     /**
@@ -111,14 +120,17 @@ public class Habitacion implements Comparable<Habitacion> {
      * @throws IllegalArgumentException si no hay ninguna celda del tipo indicado
      */
     public Celda buscarcelda(TipoCelda tipoCelda) {
+        if(tipoCelda == null){
+            throw new IllegalArgumentException("El tipo de celda no puede ser nulo");
+        }
         for (int i = 0; i < matriz.getFilas(); i++) {
             for (int j = 0; j < matriz.getColumnas(); j++) {
                 if (matriz.getCelda(i, j).getTipo() == tipoCelda) {
-                    return matriz.getCelda(i,j); // Devolvemos la primera celda del tipo buscado
+                    return matriz.getCelda(i,j);
                 }
             }
         }
-        throw new IllegalArgumentException("No se encontró una celda del tipo especificado en la habitación."); // No hay ninguna celda del tipo indicado
+        return null;
     }
 
     /**
@@ -167,6 +179,9 @@ public class Habitacion implements Comparable<Habitacion> {
      * @return diferencia de ids: negativo si esta va antes, 0 si son iguales, positivo si va después
      */
     public int compareTo(Habitacion o) {
-        return this.id - o.id; // Ordenamos por id ascendente
+        if(o == null){
+            throw new IllegalArgumentException("La habitación a comparar no puede ser nula");
+        }
+        return Integer.compare(this.id, o.id);
     }
 }

@@ -122,9 +122,15 @@ public class Objeto implements Comparable<Objeto>{
      * @param valor  valor numérico de la estadística
      */
     public void addEstadistica(String nombre, int valor) {
-        nombreEstadisticas[numeroEstadisticas] = nombre; // Guardamos el nombre en la posición actual
-        valorEstadisticas[numeroEstadisticas] = valor;   // Guardamos el valor en la misma posición
-        numeroEstadisticas++;                            // Incrementamos el contador de estadísticas
+        if(numeroEstadisticas >= nombreEstadisticas.length){
+            throw new IllegalStateException("No se pueden añadir más de " + nombreEstadisticas.length + " estadísticas");
+        }
+        if(nombre == null){
+            throw new IllegalArgumentException("El nombre de la estadística no puede ser nulo");
+        }
+        nombreEstadisticas[numeroEstadisticas] = nombre;
+        valorEstadisticas[numeroEstadisticas] = valor;
+        numeroEstadisticas++;
     }
 
     /**

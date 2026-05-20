@@ -57,6 +57,7 @@ public class GrafoHabitacion{
             throw new IllegalArgumentException("Una o ambas habitaciones no existen en el grafo"); // Alguna habitación no fue añadida antes
         }
         grafo.agregarArista(nombre1, nombre2, "conexión"); // Añadimos la arista dirigida entre los dos nodos
+        grafo.agregarArista(nombre2, nombre1, "conexión"); // Añadimos la arista inversa para hacerla bidireccional
     }
 
     /**
@@ -65,13 +66,16 @@ public class GrafoHabitacion{
      * @return habitación correspondiente, o null si no existe
      */
     private Habitacion buscarHabitacionPorNombre(String nombre) {
+        if(nombre == null){
+            return null;
+        }
         for (int j = 0; j < habitaciones.getSize(); j++) {
             ParNombreHabitacion par = habitaciones.getAt(j);
             if (par.getNombreNodo().equals(nombre)) {
-                return par.getHabitacion(); // Habitación encontrada: la devolvemos
+                return par.getHabitacion();
             }
         }
-        return null; // No existe ninguna habitación con ese nombre de nodo
+        return null;
     }
 
     /**
@@ -120,6 +124,14 @@ public class GrafoHabitacion{
      * @return lista de habitaciones en orden desde inicio hasta destino, o null si no hay ruta
      */
     public ListaSimplementeEnlazada<Habitacion> buscarRuta(Habitacion habitacioninicio, Habitacion habitacionfinal) {
+        if (habitacioninicio == null || habitacionfinal == null) {
+            throw new IllegalArgumentException("Las habitaciones no pueden ser nulas");
+        }
+        if (habitacioninicio.getId() == habitacionfinal.getId()) {
+            ListaSimplementeEnlazada<Habitacion> respuesta = new ListaSimplementeEnlazada();
+            respuesta.add(habitacioninicio);
+            return respuesta;
+        }
         String nombre1= "HAB"+ habitacioninicio.getId(); // Nombre del nodo de inicio
         String nombre2= "HAB"+ habitacionfinal.getId();  // Nombre del nodo de destino
         ListaSimplementeEnlazada<Nodo>nodos=grafo.caminoMínimo(nombre1,nombre2); // BFS en el grafo subyacente

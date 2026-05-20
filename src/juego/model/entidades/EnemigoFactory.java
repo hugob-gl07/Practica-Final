@@ -130,6 +130,9 @@ public class EnemigoFactory {
      * @return array [fila, columna] de la primera celda libre, o null si no hay espacio
      */
     private static int[] buscarPosicionLibre(Habitacion habitacion , Celda posicionJugador) {
+        if(habitacion == null || posicionJugador == null){
+            throw new IllegalArgumentException("La habitación y la posición del jugador no pueden ser nulas");
+        }
         for (int i = 0; i < habitacion.getFila(); i++) {
             for (int j = 0; j < habitacion.getColumna(); j++) {
                 int dist= Math.abs(i-posicionJugador.getX()) + Math.abs(j-posicionJugador.getY());
